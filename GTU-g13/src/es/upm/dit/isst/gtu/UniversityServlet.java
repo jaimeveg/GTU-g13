@@ -2,6 +2,8 @@ package es.upm.dit.isst.gtu;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class UniversityServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
+			throws IOException, ServletException {
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello University");
+		RequestDispatcher	view =	req.getRequestDispatcher("University.jsp");
+		view.forward(req,	resp);
 	}
 
 }
