@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.gtu.dao.CardRequestDAO;
+import es.upm.dit.isst.gtu.dao.CardRequestDAOImpl;
+
 public class UserServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -15,6 +18,14 @@ public class UserServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		RequestDispatcher	view =	req.getRequestDispatcher("User.jsp");
 		view.forward(req,	resp);
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		
+		String user = req.getParameter("firstname");
+		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
+		dao.add("User", user);
+		res.sendRedirect("/user");
 	}
 
 }
