@@ -73,7 +73,8 @@ public class CardRequestDAOImpl implements CardRequestDAO {
 	public List<CardRequest> listUniversityRequests() {
 		EntityManager	em =	EMFService.get().createEntityManager();
 		//	read	the	existing	entries
-		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	University");
+		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	:entity");
+		q.setParameter("entity", "User");
 		List<CardRequest> universityRequest =	q.getResultList();
 		return universityRequest;
 	}
@@ -82,22 +83,24 @@ public class CardRequestDAOImpl implements CardRequestDAO {
 	public List<CardRequest> listBankRequests() {
 		EntityManager	em =	EMFService.get().createEntityManager();
 		//	read	the	existing	entries
-		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	Bank");
+		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	:entity");
+		q.setParameter("entity", "Bank");
 		List<CardRequest> bankRequest =	q.getResultList();
 		return bankRequest;
 	}
 
 	@Override
-	public void update(String entity, String user) {
+	public void update(long id, String entity) {
 
 		synchronized (this)	{
-			EntityManager	em =	EMFService.get().createEntityManager();
-			Query q =	em.createQuery("select	cr from CardRequest cr	where cr.user	=	:userId");
-			q.setParameter("userId",	user);
-			CardRequest cardRequest = (CardRequest) q.getSingleResult();
-			cardRequest.setEntity(entity);
-			em.persist(cardRequest);
-			em.close();
+			EntityManager em = EMFService.get().createEntityManager();
+			try {
+				CardRequest cardRequest = em.find(CardRequest.class, id);
+				cardRequest.setEntity(entity);
+				em.merge(cardRequest);
+			} finally {
+				em.close();
+			}
 		}
 		
 	}

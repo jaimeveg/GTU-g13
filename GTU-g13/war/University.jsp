@@ -24,7 +24,7 @@
 
 				<form action="/university" method="post">
 					<input type="hidden" name="id" value="${card.id}"> <input
-						type="submit" value="Borrar Peición">
+						type="submit" value="Borrar Petición">
 				</form>
 			</td>
 		</tr>

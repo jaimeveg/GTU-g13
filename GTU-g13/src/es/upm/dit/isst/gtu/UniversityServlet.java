@@ -36,8 +36,13 @@ public class UniversityServlet extends HttpServlet {
 
 		String id = req.getParameter("id");
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.remove(Long.parseLong(id));
+		dao.update(Long.parseLong(id), "University");
 		res.sendRedirect("/university");
+		List<CardRequest> test = dao.listCardRequests();
+		
+		for(CardRequest cr : test){
+			System.out.println(cr.getEntity());
+		}
 
 	}
 
