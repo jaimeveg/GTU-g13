@@ -7,9 +7,7 @@ import es.upm.dit.isst.gtu.model.CardRequest;
 public interface CardRequestDAO {
 
 	public List<CardRequest> listCardRequests();
-	public List<CardRequest> listUserRequests();
-	public List<CardRequest> listUniversityRequests();
-	public List<CardRequest> listBankRequests();
+	public List<CardRequest> listEntityRequests(String entity);
 	public void add	(String	entity, String user);
 	public void update (long id, String entity);
 	//public List<CardRequest>	getCardRequest(String userId);

@@ -21,7 +21,7 @@ public class UniversityServlet extends HttpServlet {
 
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
-		ucr = dao.listUserRequests();
+		ucr = dao.listEntityRequests("User");
 		
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());

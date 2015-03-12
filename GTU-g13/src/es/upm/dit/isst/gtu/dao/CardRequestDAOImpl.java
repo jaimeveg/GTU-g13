@@ -57,37 +57,18 @@ public class CardRequestDAOImpl implements CardRequestDAO {
 	}
 
 	@Override
-	public List<CardRequest> listUserRequests() {
+	public List<CardRequest> listEntityRequests(String entity) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
 			//	read	the	existing	entries
 			Query q = em
 					.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	:entity");
-			q.setParameter("entity", "User");
+			q.setParameter("entity", entity);
 			List<CardRequest> userRequest = q.getResultList();
 			return userRequest;
 		}
 	}
 
-	@Override
-	public List<CardRequest> listUniversityRequests() {
-		EntityManager	em =	EMFService.get().createEntityManager();
-		//	read	the	existing	entries
-		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	:entity");
-		q.setParameter("entity", "User");
-		List<CardRequest> universityRequest =	q.getResultList();
-		return universityRequest;
-	}
-
-	@Override
-	public List<CardRequest> listBankRequests() {
-		EntityManager	em =	EMFService.get().createEntityManager();
-		//	read	the	existing	entries
-		Query q =	em.createQuery("select	cr	from	CardRequest	cr	where	cr.entity	=	:entity");
-		q.setParameter("entity", "Bank");
-		List<CardRequest> bankRequest =	q.getResultList();
-		return bankRequest;
-	}
 
 	@Override
 	public void update(long id, String entity) {
