@@ -28,8 +28,12 @@ public class BankServlet extends HttpServlet {
 			System.out.println(cr.getEntity());
 			System.out.println();
 		}
+		
+		List<CardRequest> acr = new ArrayList<CardRequest>();
+		acr = dao.listEntityRequests("Stamp");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
+		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
 		RequestDispatcher	view =	req.getRequestDispatcher("Bank.jsp");
 		view.forward(req,	resp);
 	}

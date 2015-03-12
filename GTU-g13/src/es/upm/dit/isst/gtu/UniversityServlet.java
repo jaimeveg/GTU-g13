@@ -26,8 +26,12 @@ public class UniversityServlet extends HttpServlet {
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
 		}
+		
+		List<CardRequest> acr = new ArrayList<CardRequest>();
+		acr = dao.listEntityRequests("Stamp");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
+		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
 		RequestDispatcher	view =	req.getRequestDispatcher("University.jsp");
 		view.forward(req,	resp);
 	}

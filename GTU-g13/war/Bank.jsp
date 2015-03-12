@@ -12,6 +12,9 @@
 
 	<br>
 	<br>
+	Peticiones pendientes:
+	<br>
+	<br>
 
 	<c:forEach items="${cards}" var="card">
 		<tr>
@@ -30,5 +33,19 @@
 		</tr>
 		<br>
 	</c:forEach>
+	
+	<br>
+	<br>
+	Peticiones aceptadas:
+	<br>
+	<br>
+	<c:forEach items="${accepted}" var="accept">
+		<tr>
+			<td>La petición de <c:out value="${accept.user}" /> ha sido aceptada.</td>
+		</tr>
+		<br>
+		<br>
+	</c:forEach>
+	
 </body>
 </html>
