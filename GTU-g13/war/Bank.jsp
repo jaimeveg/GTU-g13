@@ -5,47 +5,84 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <title>Bank Page</title>
 </head>
 <body>
-	This is the bank page
+	<div class="row titulo">
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<a href="/"><img id="fotoTitulo" src="img/tarjetas.png"> </img> </a>
+		</div>
+		<div class="col-lg-9 col-md-9 col-xs-9 col-sm-9">
+			<div class="row">
+				<h1 class="textTitulo primeraFila">Página de consulta de solicitudes:</h1>
+			</div>
+			<div class="row">
+				<h1 class="textTitulo segundaFila"> Entidad Bancaria</h1>
+			</div>
+		</div>
 
-	<br>
-	<br>
-	Peticiones pendientes:
-	<br>
-	<br>
-
-	<c:forEach items="${cards}" var="card">
-		<tr>
-			<td><c:out value="${card.user}" /> realiza petición como <c:out
-					value="${card.entity}" /></td>
-		</tr>
-		<br>
-		<tr>
-			<td>
-
-				<form action="/bank" method="post">
-					<input type="hidden" name="id" value="${card.id}"> <input
-						type="submit" value="Aceptar Petición">
-				</form>
-			</td>
-		</tr>
-		<br>
-	</c:forEach>
+	</div>
+	<div class="col-md-8 col-xs-8 col-lg-8 col-sm-8 ">
 	
-	<br>
-	<br>
-	Peticiones aceptadas:
-	<br>
-	<br>
-	<c:forEach items="${accepted}" var="accept">
+		<p class="aceptadasTexto"> PETICIONES PENDIENTES </p>
+		<table class="table table-hover">
 		<tr>
-			<td>La petición de <c:out value="${accept.user}" /> ha sido aceptada.</td>
+			<th> ID </th>
+			<th> Nombre </th>
+			<th> Entidad </th>
+			<th> Aceptar </th>
 		</tr>
-		<br>
-		<br>
-	</c:forEach>
+		
+		<c:forEach items="${cards}" var="card">
+			<tr class="warning">
+				<td><c:out value="${card.id}" /></td>
+				<td><c:out value="${card.user}" /></td>
+				<td><c:out value="${card.entity}" /></td>
+				<td>
+					<form action="/bank" method="post">
+						<input type="hidden" name="id" value="${card.id}"> <input
+							type="submit" value="Aceptar Petición">
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+		
+		</table>
+
+		<p class="aceptadasTexto">PETICIONES ACEPTADAS</p>
+		<table class="table table-hover">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+
+			</tr>
+
+			<c:forEach items="${accepted}" var="accept">
+
+				<tr class="success">
+					<td><c:out value="${accept.id}" /></td>
+					<td><c:out value="${accept.user}" /></td>
+					<td>-</td>
+				</tr>
+			</c:forEach>
+
+		</table>
+
+
+	</div>
+	<!-- Librería jQuery requerida por los plugins de JavaScript -->
+	<script src="http://code.jquery.com/jquery.js"></script>
 	
 </body>
 </html>

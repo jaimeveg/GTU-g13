@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'Bebas';
+	src: url('BebasNeuewebfont.otf');
+}
+body{
+	background-color:#E6E6E6;
+}
+
+.titulo{
+	background-color: #2e2e2e;
+	height: 200px;
+	font-family: 'Bebas';
+}
+
+#fotoTitulo{
+	margin-left: 20px;
+	height: 300px;
+	width: auto;
+}
+
+.textTitulo{
+	color:#E6E6E6;
+}
+.primeraFila{
+	margin-top:50px;
+	font-size: 25px;
+}
+.segundaFila{
+	font-size: 50px;
+	margin-top: 20px;
+	margin-left: 8%;
+
+}
+.textoAccede{
+	font-family: 'Bebas';
+	font-size: 26px;
+	margin-top: 10px;
+	float: right;
+	margin-right: 100px;
+}
+.icono{
+	height: 200px;
+	width: auto;
+	-webkit-transition: all 0.4s;
+}
+.icono:hover{
+	height: 230px;
+	width: auto;
+	
+}
+.iconos{
+	margin-left: 17%;
+}
+.formulario{
+	margin-top: 50px;
+}
+.tablas{
+	margin-bottom: 40px;
+}
+
+.aceptadasTexto {
+	font-family: 'Bebas';
+	font-size: 25px;
+	margin-top: 20px;
+}
