@@ -21,18 +21,29 @@ public class BankServlet extends HttpServlet {
 
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
+		List<CardRequest> ucrm = new ArrayList<CardRequest>();
+		List<CardRequest> ucrn = new ArrayList<CardRequest>();
 		ucr = dao.listEntityRequests("University");
 		
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
 			System.out.println(cr.getEntity());
-			System.out.println();
+			if(cr.getTarj_mon() ){
+				System.out.println("Solicita tarjeta monedero");
+				ucrm.add(cr);
+				
+			}
+			else{
+				System.out.println("No solicita tarjeta monedero");
+				ucrn.add(cr);
+			}
 		}
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
 		acr = dao.listEntityRequests("Stamp");
 
-		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
+		req.setAttribute("cards", new ArrayList<CardRequest>(ucrn));
+		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucrm));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
 		RequestDispatcher	view =	req.getRequestDispatcher("Bank.jsp");
 		view.forward(req,	resp);

@@ -34,7 +34,7 @@
 	</div>
 	<div class="col-md-8 col-xs-8 col-lg-8 col-sm-8 ">
 	
-		<p class="aceptadasTexto"> PETICIONES PENDIENTES </p>
+		<p class="aceptadasTexto"> PETICIONES PENDIENTES NO MONEDERO </p>
 		<table class="table table-hover">
 		<tr>
 			<th> ID </th>
@@ -44,6 +44,32 @@
 		</tr>
 		
 		<c:forEach items="${cards}" var="card">
+			<tr class="warning">
+				<td><c:out value="${card.id}" /></td>
+				<td><c:out value="${card.user}" /></td>
+				<td><c:out value="${card.entity}" /></td>
+				
+				<td>
+					<form action="/bank" method="post">
+						<input type="hidden" name="id" value="${card.id}"> <input
+							type="submit" value="Aceptar Petición">
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+		
+		</table>
+			
+		<p class="aceptadasTexto"> PETICIONES PENDIENTES MONEDERO </p>
+		<table class="table table-hover">
+		<tr>
+			<th> ID </th>
+			<th> Nombre </th>
+			<th> Entidad </th>
+			<th> Aceptar </th>
+		</tr>
+		
+		<c:forEach items="${cardsm}" var="card">
 			<tr class="warning">
 				<td><c:out value="${card.id}" /></td>
 				<td><c:out value="${card.user}" /></td>
@@ -58,7 +84,6 @@
 		</c:forEach>
 		
 		</table>
-
 		<p class="aceptadasTexto">PETICIONES ACEPTADAS</p>
 		<table class="table table-hover">
 			<tr>

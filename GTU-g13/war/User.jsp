@@ -53,6 +53,11 @@
 								class="glyphicon glyphicon-asterisk"></span></span>
 						</div>
 					</div>
+						
+					<div class="form-group">
+					<input name="monedero" type="checkbox" value="checked"/> ¿Desea la funcionalidad de tarjeta monedero?
+					</div>
+					
 					<div class="col-lg-6">
 						<div class="well well-sm">
 							<strong><span class="glyphicon glyphicon-asterisk"></span>

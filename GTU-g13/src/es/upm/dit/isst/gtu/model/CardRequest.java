@@ -17,10 +17,12 @@ public class CardRequest implements Serializable{
 	private Long id;
 	private String entity;
 	private String user;
+	private boolean tarj_mon;
 	
-	public CardRequest(String entity, String user){
+	public CardRequest(String entity, String user, Boolean tarj_mon){
 		this.entity = entity;
 		this.user = user;
+		this.tarj_mon = tarj_mon;
 	}
 	
 	public Long getId() {
@@ -30,7 +32,13 @@ public class CardRequest implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public Boolean getTarj_mon() {
+		return tarj_mon;
+	}
 
+	public void setTarj_mon(Boolean tarj_mon) {
+		this.tarj_mon = tarj_mon;
+	}
 
 	public String getEntity() {
 		return entity;
