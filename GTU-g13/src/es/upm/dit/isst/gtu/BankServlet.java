@@ -28,7 +28,7 @@ public class BankServlet extends HttpServlet {
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
 			System.out.println(cr.getEntity());
-			if(cr.getTarj_mon() ){
+			if(cr.getMonedero() ){
 				System.out.println("Solicita tarjeta monedero");
 				ucrm.add(cr);
 				

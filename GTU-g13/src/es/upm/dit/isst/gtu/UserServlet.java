@@ -23,9 +23,9 @@ public class UserServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 		
 		String user = req.getParameter("firstname");
-		Boolean tarj_mon= req.getParameter("monedero")!=null;
+		boolean mondero= req.getParameter("monedero")!=null;
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.add("User", user, tarj_mon);
+		dao.add("User", user, mondero);
 		res.sendRedirect("/user");
 	}
 

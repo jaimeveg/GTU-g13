@@ -31,11 +31,11 @@ public class CardRequestDAOImpl implements CardRequestDAO {
 	}
 
 	@Override
-	public void add(String entity, String user) {
+	public void add(String entity, String user, boolean monedero) {
 
 			System.out.println("El usuario "+ user +" ha realizado peticion. Fase: " + entity);
 			EntityManager	em =	EMFService.get().createEntityManager();
-			CardRequest cardRequest =	new CardRequest(entity, user);
+			CardRequest cardRequest =	new CardRequest(entity, user, monedero);
 			em.persist(cardRequest);
 			em.close();
 
