@@ -23,7 +23,7 @@ public class BankServlet extends HttpServlet {
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
 		List<CardRequest> ucrm = new ArrayList<CardRequest>();
 		List<CardRequest> ucrn = new ArrayList<CardRequest>();
-		ucr = dao.listEntityRequests("University");
+		ucr = dao.listRequests("University", "Request");
 		
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
@@ -40,7 +40,7 @@ public class BankServlet extends HttpServlet {
 		}
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
-		acr = dao.listEntityRequests("Stamp");
+		acr = dao.listRequests("Stamp", "Accept");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucrn));
 		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucrm));
@@ -52,8 +52,10 @@ public class BankServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
 		String id = req.getParameter("id");
+		String entity = "Bank";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.update(Long.parseLong(id), "Bank");
+		dao.updateEntity(Long.parseLong(id), "Bank");
+		//No es necesario actualizar el estado, sigue siendo peticion
 		res.sendRedirect("/bank");
 		List<CardRequest> test = dao.listCardRequests();
 		

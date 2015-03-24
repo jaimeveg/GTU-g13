@@ -40,6 +40,7 @@
 			<th> ID </th>
 			<th> Nombre </th>
 			<th> Entidad </th>
+			<th> Estado </th>
 			<th> Aceptar </th>
 		</tr>
 		
@@ -48,7 +49,7 @@
 				<td><c:out value="${card.id}" /></td>
 				<td><c:out value="${card.user}" /></td>
 				<td><c:out value="${card.entity}" /></td>
-				
+				<td><c:out value="${card.state}" /></td>
 				<td>
 					<form action="/bank" method="post">
 						<input type="hidden" name="id" value="${card.id}"> <input

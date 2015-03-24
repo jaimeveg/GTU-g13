@@ -21,14 +21,14 @@ public class UniversityServlet extends HttpServlet {
 
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
-		ucr = dao.listEntityRequests("User");
+		ucr = dao.listRequests("User", "Request");
 		
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
 		}
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
-		acr = dao.listEntityRequests("Stamp");
+		acr = dao.listRequests("Stamp", "Accept");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
@@ -39,8 +39,10 @@ public class UniversityServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
 		String id = req.getParameter("id");
+		String entity = "University";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.update(Long.parseLong(id), "University");
+		dao.updateEntity(Long.parseLong(id), entity);
+		//No es necesario actualizar el estado, sigue siendo peticion
 		res.sendRedirect("/university");
 		List<CardRequest> test = dao.listCardRequests();
 		

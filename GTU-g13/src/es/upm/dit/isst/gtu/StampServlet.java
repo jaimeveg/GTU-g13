@@ -21,7 +21,7 @@ public class StampServlet extends HttpServlet {
 		
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
-		ucr = dao.listEntityRequests("Bank");
+		ucr = dao.listRequests("Bank", "Request");
 		
 		for(CardRequest cr : ucr){
 			System.out.println(cr.getUser());
@@ -30,7 +30,7 @@ public class StampServlet extends HttpServlet {
 		}
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
-		acr = dao.listEntityRequests("Stamp");
+		acr = dao.listRequests("Stamp", "Accept");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
@@ -41,8 +41,11 @@ public class StampServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
 		String id = req.getParameter("id");
+		String entity = "Stamp";
+		String state = "Accept";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.update(Long.parseLong(id), "Stamp");
+		dao.updateEntity(Long.parseLong(id), entity);
+		dao.updateState(Long.parseLong(id), state);
 		res.sendRedirect("/stamp");
 		List<CardRequest> test = dao.listCardRequests();
 		
