@@ -45,7 +45,7 @@
 	</div>
 	<div class="row">
 		<div class="textoAccede">
-		<a href="register">REGISTRO</a>
+		<a href="<c:url value="${url}"/>">REGISTRO</a>
 		</div>
 
 	</div>
