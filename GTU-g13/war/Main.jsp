@@ -45,11 +45,12 @@
 	</div>
 	<div class="row">
 		<div class="textoAccede">
-		<a href="register">REGISTRO</a>
+		<a href="<c:url value="${url}"/>">REGISTRO</a>
+		<a href="<c:url value="${urlLogin}"/>">LOG IN</a>
 		</div>
 
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="col-xs-7 col-md-7 col-lg-7 col-sm-7 iconos">
 
 			<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
