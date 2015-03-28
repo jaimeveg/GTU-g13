@@ -6,4 +6,4 @@ gaeHrdEnabled=true
 gaeLaunchAppInBrowser=true
 googleCloudSqlEnabled=false
 localDevMySqlEnabled=true
-ormEnhancementInclusions=src/|src/es/upm/dit/isst/gtu/model/CardRequest.java
+ormEnhancementInclusions=src/|src/es/upm/dit/isst/gtu/model/CardRequest.java|src/es/upm/dit/isst/gtu/model/Usuario.java
