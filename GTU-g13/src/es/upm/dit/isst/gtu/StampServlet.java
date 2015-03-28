@@ -40,11 +40,17 @@ public class StampServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
+		String action = req.getParameter("action");
 		String id = req.getParameter("id");
 		String entity = "Stamp";
-		String state = "Accept";
+		String state = "";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		dao.updateEntity(Long.parseLong(id), entity);
+		if (action.equals("Accept")){
+			state = "Accept";
+		} else if (action.equals("Reject")){
+			state = "Rejected";
+		}
 		dao.updateState(Long.parseLong(id), state);
 		res.sendRedirect("/stamp");
 		List<CardRequest> test = dao.listCardRequests();

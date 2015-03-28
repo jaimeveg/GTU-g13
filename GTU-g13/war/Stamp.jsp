@@ -45,6 +45,7 @@
 				<th>Entidad</th>
 				<th>Estado</th>
 				<th>Aceptar</th>
+				<th> Rechazar</th>
 			</tr>
 
 			<c:forEach items="${cards}" var="card">
@@ -55,8 +56,16 @@
 					<td><c:out value="${card.state}" /></td>
 					<td>
 						<form action="/stamp" method="post">
-							<input type="hidden" name="id" value="${card.id}"> <input
-								type="submit" value="Aceptar Petición">
+							<input type="hidden" name="id" value="${card.id}">
+							<input type="hidden" name="action" value="Accept">
+							<input type="submit" value="Aceptar Petición">
+						</form>
+					</td>
+					<td>
+						<form action="/stamp" method="post">
+							<input type="hidden" name="id" value="${card.id}">
+							<input type="hidden" name="action" value="Reject">
+							<input type="submit" value="Rechazar Petición">
 						</form>
 					</td>
 				</tr>
@@ -83,8 +92,7 @@
 			</c:forEach>
 
 		</table>
-
-
+		
 	</div>
 	<!-- Librería jQuery requerida por los plugins de JavaScript -->
 	<script src="http://code.jquery.com/jquery.js"></script>

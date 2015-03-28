@@ -42,6 +42,7 @@
 			<th> Entidad </th>
 			<th> Estado </th>
 			<th> Aceptar </th>
+			<th> Rechazar </th>
 		</tr>
 		
 		<c:forEach items="${cards}" var="card">
@@ -52,8 +53,16 @@
 				<td><c:out value="${card.state}" /></td>
 				<td>
 					<form action="/bank" method="post">
-						<input type="hidden" name="id" value="${card.id}"> <input
-							type="submit" value="Aceptar Petición">
+						<input type="hidden" name="id" value="${card.id}">
+						<input type="hidden" name="action" value="Accept">
+						<input type="submit" value="Aceptar Petición">
+					</form>					
+				</td>
+				<td>
+					<form action="/bank" method="post">
+						<input type="hidden" name="id" value="${card.id}">
+						<input type="hidden" name="action" value="Reject">
+						<input type="submit" value="Rechazar Petición">
 					</form>
 				</td>
 			</tr>
@@ -68,6 +77,7 @@
 			<th> Nombre </th>
 			<th> Entidad </th>
 			<th> Aceptar </th>
+			<th> Rechazar </th>
 		</tr>
 		
 		<c:forEach items="${cardsm}" var="card">
@@ -77,14 +87,63 @@
 				<td><c:out value="${card.entity}" /></td>
 				<td>
 					<form action="/bank" method="post">
-						<input type="hidden" name="id" value="${card.id}"> <input
-							type="submit" value="Aceptar Petición">
+						<input type="hidden" name="id" value="${card.id}">
+						<input type="hidden" name="action" value="Accept">
+						<input type="submit" value="Aceptar Petición">
+					</form>
+				</td>
+				<td>
+					<form action="/bank" method="post">
+						<input type="hidden" name="id" value="${card.id}">
+						<input type="hidden" name="action" value="Reject">
+						<input type="submit" value="Rechazar Petición">
 					</form>
 				</td>
 			</tr>
 		</c:forEach>
 		
 		</table>
+		
+		<p class="aceptadasTexto"> PETICIONES RECHAZADAS </p>
+		<table class="table table-hover">
+		<tr>
+			<th> ID </th>
+			<th> Nombre </th>
+			<th> Apellido </th>
+			<th> Entidad </th>
+			<th> Estado </th>
+			<th> Aceptar </th>
+			<th> Rechazar</th>
+		</tr>
+		
+		<c:forEach items="${rejected}" var="reject">
+		
+			<tr class="warning">
+				<td><c:out value="${reject.id}" /></td>
+				<td><c:out value="${reject.user}" /></td>
+				<td> - </td>
+				<td> <c:out value="${reject.entity}" /> </td>
+			<td> <c:out value="${reject.state}" /> </td>
+			<td>
+				<form action="/bank" method="post">
+					<input type="hidden" name="id" value="${reject.id}">
+					<input type="hidden" name="action" value="Accept">
+					<input type="submit" value="Aceptar Petición">
+				</form>
+			</td>
+			<td>
+				<form action="/bank" method="post">
+					<input type="hidden" name="id" value="${reject.id}">
+					<input type="hidden" name="action" value="Reject">
+					<input type="submit" value="Rechazar Petición">
+				</form>
+			</td>
+			</tr>
+		</c:forEach>
+		
+		</table>
+		
+		
 		<p class="aceptadasTexto">PETICIONES ACEPTADAS</p>
 		<table class="table table-hover">
 			<tr>
@@ -104,8 +163,7 @@
 			</c:forEach>
 
 		</table>
-
-
+		
 	</div>
 	<!-- Librería jQuery requerida por los plugins de JavaScript -->
 	<script src="http://code.jquery.com/jquery.js"></script>

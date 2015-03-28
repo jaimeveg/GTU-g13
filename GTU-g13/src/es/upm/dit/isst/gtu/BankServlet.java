@@ -39,23 +39,37 @@ public class BankServlet extends HttpServlet {
 			}
 		}
 		
+		List<CardRequest> rcr = new ArrayList<CardRequest>();
+		rcr = dao.listRequests("Stamp", "Rejected");
+		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
 
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucrn));
 		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucrm));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
+		req.setAttribute("rejected", new ArrayList<CardRequest>(rcr));
+
 		RequestDispatcher	view =	req.getRequestDispatcher("Bank.jsp");
 		view.forward(req,	resp);
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
+		String action = req.getParameter("action");
+
 		String id = req.getParameter("id");
 		String entity = "Bank";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.updateEntity(Long.parseLong(id), "Bank");
-		//No es necesario actualizar el estado, sigue siendo peticion
+		dao.updateEntity(Long.parseLong(id), entity);
+		//Si es un rechazo, se actualiza el estado
+		System.out.println("LA ACCIÓN ES "+action);
+		if (action.equals("Reject")) {
+			System.out.println("HA SIDO RECHAZADA "+id);
+			dao.updateState(Long.parseLong(id), "Rejected");
+		} if (action.equals("Accept")) {
+			dao.updateState(Long.parseLong(id), "Request");
+		}
 		res.sendRedirect("/bank");
 		List<CardRequest> test = dao.listCardRequests();
 		
