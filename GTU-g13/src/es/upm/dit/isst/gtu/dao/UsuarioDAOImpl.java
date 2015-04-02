@@ -67,5 +67,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			}
 		}
 	}
+	
+	@Override
+	public void remove(Long id) {
+
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			try {
+				Usuario usuario = em.find(Usuario.class, id);
+				em.remove(usuario);
+			} finally {
+				em.close();
+			}
+		}
+
+	}
 
 }

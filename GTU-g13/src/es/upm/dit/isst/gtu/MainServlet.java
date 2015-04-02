@@ -35,10 +35,16 @@ public class MainServlet extends HttpServlet {
 				entity = usuario.getEntity();
 				entity = entity.toLowerCase();
 			}else{
-				Cookie err = new Cookie("error", "1");
-				resp.addCookie(err);
-				resp.sendRedirect("/error");
-				return;
+				System.out.println(user.getNickname());
+				if(user.getNickname().equals("getsor.gtu.isst")){
+					Cookie err = new Cookie("error", "1");
+					resp.addCookie(err);
+					resp.sendRedirect("/error");
+					return;
+				}else{
+					resp.sendRedirect("/admin");
+					return;
+				}
 			}
 		}
 		String	urlLogin =	userService.createLoginURL("/");
