@@ -42,7 +42,7 @@
 						<label for="InputName">INTRODUCE TU NOMBRE</label>
 						<div class="input-group">
 							<input type="text" class="form-control" name="firstname"
-								id="InputName" placeholder="Enter Name" required> <span
+								id="InputName" value="<c:url value="${user.name}"/>" required> <span
 								class="input-group-addon"><span
 								class="glyphicon glyphicon-asterisk"></span></span>
 						</div>
@@ -51,7 +51,7 @@
 						<label for="InputName">INTRODUCE TU APELLIDO</label>
 						<div class="input-group">
 							<input type="text" class="form-control" name="lastname"
-								id="InputName" placeholder="Enter Name" required> <span
+								id="InputName" value="<c:url value="${user.surname}"/>" required> <span
 								class="input-group-addon"><span
 								class="glyphicon glyphicon-asterisk"></span></span>
 						</div>

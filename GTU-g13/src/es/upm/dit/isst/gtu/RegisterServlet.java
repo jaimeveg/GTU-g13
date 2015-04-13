@@ -60,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
 		String bank = req.getParameter("bank");	
 		String entityName = req.getParameter("entityName");
 		String entityAb = req.getParameter("entityAb");
-		if(entity == "User"){
+		if(entity.equals("User")){
 			userDAO.add(entity, userId, name, surname, dni, university, bank);
 		}else{
 			userDAO.add(entity, userId, entityName, entityAb, "", "", "");

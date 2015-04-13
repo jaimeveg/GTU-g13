@@ -34,6 +34,9 @@ public class ManagerServlet extends HttpServlet {
 		}
 		
 		List<Usuario> usuarios = userDAO.listUsersByEntity("User");
+		for (Usuario usuario : usuarios) {
+			System.out.println("Usuario: " + usuario.getName());
+		}
 		List<Usuario> universidades = userDAO.listUsersByEntity("University");
 		List<Usuario> bancos = userDAO.listUsersByEntity("Bank");
 		List<Usuario> estampadoras = userDAO.listUsersByEntity("Stamp");

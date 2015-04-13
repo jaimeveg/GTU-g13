@@ -26,10 +26,11 @@ public class UserServlet extends HttpServlet {
 		UsuarioDAO userDAO = UsuarioDAOImpl.getInstance();
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
+		Usuario usuario = null;
 		
 		String entity = "";
 		if (user!=null && userDAO.getUsuarioByUserId(user.getNickname()) != null){
-			Usuario usuario = userDAO.getUsuarioByUserId(user.getNickname());
+			usuario = userDAO.getUsuarioByUserId(user.getNickname());
 			entity = usuario.getEntity();
 		}
 		if(user == null || !entity.equals("User")){
@@ -42,18 +43,21 @@ public class UserServlet extends HttpServlet {
 		
 		resp.setContentType("text/plain");
 		req.getSession().setAttribute("url",	url);
+		req.getSession().setAttribute("user", usuario);
 		RequestDispatcher	view =	req.getRequestDispatcher("User.jsp");
 		view.forward(req,	resp);
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 		
-		String user = req.getParameter("firstname");
+		UserService	userService =	UserServiceFactory.getUserService();
+		User	user =	userService.getCurrentUser();
+		String userId = user.getNickname();
 		String entity = "User";
 		String state = "Request";
 		boolean mondero= req.getParameter("monedero")!=null;
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.add(entity, user, mondero, state);
+		dao.add(entity, userId, mondero, state);
 		res.sendRedirect("/user");
 	}
 
