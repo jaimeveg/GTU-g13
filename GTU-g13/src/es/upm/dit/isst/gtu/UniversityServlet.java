@@ -23,6 +23,24 @@ import es.upm.dit.isst.gtu.model.CardRequest;
 import es.upm.dit.isst.gtu.model.Usuario;
 
 public class UniversityServlet extends HttpServlet {
+	public List<CardRequest> devuelvelista(UsuarioDAO dao, String nombre,List <CardRequest> cr){
+		System.out.println("Nombre: "+ nombre);
+		List<CardRequest> rs= new ArrayList<CardRequest>();
+		for(CardRequest c: cr){
+			if(dao.getUsuarioByUserId(c.getUser())!=null){
+				System.out.println("user encontrado");
+				Usuario u = dao.getUsuarioByUserId(c.getUser());
+				System.out.println("Universidad: "+ u.getUniversity());
+				if(u.getUniversity().equals(nombre)){
+					System.out.println("Igual fiesta!!");
+					rs.add(c);
+				}
+				
+			}
+		}
+		return rs;
+		
+	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
@@ -30,10 +48,14 @@ public class UniversityServlet extends HttpServlet {
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
 		
+		
 		String entity = "";
+		Usuario usuario = null ;
+
 		if (user!=null && userDAO.getUsuarioByUserId(user.getNickname()) != null){
-			Usuario usuario = userDAO.getUsuarioByUserId(user.getNickname());
+			usuario = userDAO.getUsuarioByUserId(user.getNickname());
 			entity = usuario.getEntity();
+ 			
 		}
 		if(user == null || !entity.equals("University")){
 			Cookie err = new Cookie("error", "0");
@@ -41,26 +63,32 @@ public class UniversityServlet extends HttpServlet {
 			resp.sendRedirect("/error");
 		}
 		
-		String url =	userService.createLogoutURL("/");
+		String url = userService.createLogoutURL("/");
 
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		List<CardRequest> ucr = new ArrayList<CardRequest>();
-		ucr = dao.listRequests("User", "Request");
 		
-		for(CardRequest cr : ucr){
-			System.out.println(cr.getUser());
-		}
+		List<CardRequest> ucr = new ArrayList<CardRequest>();
+		List<CardRequest> uc = new ArrayList<CardRequest>();
+		
+		ucr = dao.listRequests("User", "Request");
+		uc = devuelvelista(userDAO,usuario.getName(),ucr);
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
+		List<CardRequest> ac = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
+		ac = devuelvelista(userDAO,usuario.getName(),acr);
 		
 		List<CardRequest> rcr = new ArrayList<CardRequest>();
+		List<CardRequest> rc = new ArrayList<CardRequest>();
 		rcr = dao.listRequests("Bank", "Rejected");
+		rc = devuelvelista(userDAO,usuario.getName(),rcr);
+		
+		
 
 		req.getSession().setAttribute("url",	url);
-		req.setAttribute("cards", new ArrayList<CardRequest>(ucr));
-		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
-		req.setAttribute("rejected", new ArrayList<CardRequest>(rcr));
+		req.setAttribute("cards", new ArrayList<CardRequest>(uc));
+		req.setAttribute("accepted", new ArrayList<CardRequest>(ac));
+		req.setAttribute("rejected", new ArrayList<CardRequest>(rc));
 		RequestDispatcher	view =	req.getRequestDispatcher("University.jsp");
 		view.forward(req,	resp);
 	}

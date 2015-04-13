@@ -24,16 +24,33 @@ import es.upm.dit.isst.gtu.model.Usuario;
 
 public class BankServlet extends HttpServlet {
 	
+	public List<CardRequest> devuelvelista(UsuarioDAO dao, String nombre,List <CardRequest> cr){
+		List<CardRequest> rs= new ArrayList<CardRequest>();
+		for(CardRequest c: cr){
+			if(dao.getUsuarioByUserId(c.getUser())!=null){
+				Usuario u = dao.getUsuarioByUserId(c.getUser());
+				if(u.getBank().equals(nombre)){
+					rs.add(c);
+				}
+				
+			}
+		}
+		return rs;
+		
+	}
+
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 
 		UsuarioDAO userDAO = UsuarioDAOImpl.getInstance();
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
+		Usuario usuario = null;
 		
 		String entity = "";
 		if (user!=null && userDAO.getUsuarioByUserId(user.getNickname()) != null){
-			Usuario usuario = userDAO.getUsuarioByUserId(user.getNickname());
+			 usuario = userDAO.getUsuarioByUserId(user.getNickname());
 			entity = usuario.getEntity();
 		}
 		if(user == null || !entity.equals("Bank")){
@@ -48,6 +65,9 @@ public class BankServlet extends HttpServlet {
 		List<CardRequest> ucr = new ArrayList<CardRequest>();
 		List<CardRequest> ucrm = new ArrayList<CardRequest>();
 		List<CardRequest> ucrn = new ArrayList<CardRequest>();
+		List<CardRequest> ucm = new ArrayList<CardRequest>();
+		List<CardRequest> ucn = new ArrayList<CardRequest>();
+		
 		ucr = dao.listRequests("University", "Request");
 		
 		for(CardRequest cr : ucr){
@@ -56,27 +76,37 @@ public class BankServlet extends HttpServlet {
 			if(cr.getMonedero() ){
 				System.out.println("Solicita tarjeta monedero");
 				ucrm.add(cr);
+				}
 				
-			}
+			
 			else{
 				System.out.println("No solicita tarjeta monedero");
-				ucrn.add(cr);
+				
+					ucrn.add(cr);
+				
 			}
 		}
+		ucm = devuelvelista(userDAO,usuario.getName(),ucrm);
+		ucn = devuelvelista(userDAO,usuario.getName(),ucrn);
+		
 		
 		List<CardRequest> rcr = new ArrayList<CardRequest>();
+		List<CardRequest> rc = new ArrayList<CardRequest>();
 		rcr = dao.listRequests("Stamp", "Rejected");
+		rc = devuelvelista(userDAO,usuario.getName(),rcr);
+		
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
+		List<CardRequest> ac = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
-
+		ac = devuelvelista(userDAO,usuario.getSurname(),acr);
 
 		resp.setContentType("text/plain");
 		req.getSession().setAttribute("url",	url);
-		req.setAttribute("cards", new ArrayList<CardRequest>(ucrn));
-		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucrm));
-		req.setAttribute("accepted", new ArrayList<CardRequest>(acr));
-		req.setAttribute("rejected", new ArrayList<CardRequest>(rcr));
+		req.setAttribute("cards", new ArrayList<CardRequest>(ucn));
+		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucm));
+		req.setAttribute("accepted", new ArrayList<CardRequest>(ac));
+		req.setAttribute("rejected", new ArrayList<CardRequest>(rc ));
 
 		RequestDispatcher	view =	req.getRequestDispatcher("Bank.jsp");
 		view.forward(req,	resp);
@@ -108,3 +138,4 @@ public class BankServlet extends HttpServlet {
 	}
 
 }
+

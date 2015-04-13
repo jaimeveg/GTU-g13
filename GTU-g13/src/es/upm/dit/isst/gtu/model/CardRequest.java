@@ -20,11 +20,13 @@ public class CardRequest implements Serializable{
 	private boolean monedero;
 	private String state;
 	
+	
 	public CardRequest(String entity, String user, boolean monedero, String state){
 		this.entity = entity;
 		this.user = user;
 		this.monedero = monedero;
 		this.state = state;
+	
 	}
 	
 	public Long getId() {
@@ -65,5 +67,4 @@ public class CardRequest implements Serializable{
 	public void setState(String state) {
 		this.state = state;
 	}
-
 }

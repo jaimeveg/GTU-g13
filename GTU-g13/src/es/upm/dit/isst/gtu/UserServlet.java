@@ -55,9 +55,10 @@ public class UserServlet extends HttpServlet {
 		String userId = user.getNickname();
 		String entity = "User";
 		String state = "Request";
+		
 		boolean mondero= req.getParameter("monedero")!=null;
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.add(entity, userId, mondero, state);
+		dao.add(entity, userId, mondero, state); 
 		res.sendRedirect("/user");
 	}
 
