@@ -3,6 +3,7 @@ package es.upm.dit.isst.gtu.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import es.upm.dit.isst.gtu.model.CardRequest;
@@ -19,6 +20,24 @@ public class CardRequestDAOImpl implements CardRequestDAO {
 		if (instance ==	null)
 			instance =	new CardRequestDAOImpl();
 		return instance;
+	}
+
+	@Override
+	public CardRequest getCardRequestByUserId(String userId) {
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			//	read	the	existing	entries
+			try {
+				Query q = em
+						.createQuery("select	cr	from	CardRequest	cr	where	cr.user	=	:userId");
+				q.setParameter("userId", userId);
+				CardRequest request = (CardRequest) q.getSingleResult();
+				return request;
+			} catch (NoResultException e) {
+				CardRequest request = null;
+				return request;
+			}
+		}
 	}
 
 	@Override

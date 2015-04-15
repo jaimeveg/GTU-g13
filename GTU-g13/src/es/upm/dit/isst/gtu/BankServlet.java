@@ -23,23 +23,7 @@ import es.upm.dit.isst.gtu.model.CardRequest;
 import es.upm.dit.isst.gtu.model.Usuario;
 
 public class BankServlet extends HttpServlet {
-	
-	public List<CardRequest> devuelvelista(UsuarioDAO dao, String nombre,List <CardRequest> cr){
-		List<CardRequest> rs= new ArrayList<CardRequest>();
-		for(CardRequest c: cr){
-			if(dao.getUsuarioByUserId(c.getUser())!=null){
-				Usuario u = dao.getUsuarioByUserId(c.getUser());
-				if(u.getBank().equals(nombre)){
-					rs.add(c);
-				}
-				
-			}
-		}
-		return rs;
 		
-	}
-
-	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 
@@ -86,20 +70,20 @@ public class BankServlet extends HttpServlet {
 				
 			}
 		}
-		ucm = devuelvelista(userDAO,usuario.getName(),ucrm);
-		ucn = devuelvelista(userDAO,usuario.getName(),ucrn);
+		ucm = listByBank(userDAO,usuario.getName(),ucrm);
+		ucn = listByBank(userDAO,usuario.getName(),ucrn);
 		
 		
 		List<CardRequest> rcr = new ArrayList<CardRequest>();
 		List<CardRequest> rc = new ArrayList<CardRequest>();
 		rcr = dao.listRequests("Stamp", "Rejected");
-		rc = devuelvelista(userDAO,usuario.getName(),rcr);
+		rc = listByBank(userDAO,usuario.getName(),rcr);
 		
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
 		List<CardRequest> ac = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
-		ac = devuelvelista(userDAO,usuario.getSurname(),acr);
+		ac = listByBank(userDAO,usuario.getSurname(),acr);
 
 		resp.setContentType("text/plain");
 		req.getSession().setAttribute("url",	url);
@@ -135,6 +119,21 @@ public class BankServlet extends HttpServlet {
 			System.out.println(cr.getEntity());
 		}
 
+	}
+	
+	public List<CardRequest> listByBank(UsuarioDAO dao, String nombre,List <CardRequest> cr){
+		List<CardRequest> rs= new ArrayList<CardRequest>();
+		for(CardRequest c: cr){
+			if(dao.getUsuarioByUserId(c.getUser())!=null){
+				Usuario u = dao.getUsuarioByUserId(c.getUser());
+				if(u.getBank().equals(nombre)){
+					rs.add(c);
+				}
+				
+			}
+		}
+		return rs;
+		
 	}
 
 }

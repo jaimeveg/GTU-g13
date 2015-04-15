@@ -23,24 +23,6 @@ import es.upm.dit.isst.gtu.model.CardRequest;
 import es.upm.dit.isst.gtu.model.Usuario;
 
 public class UniversityServlet extends HttpServlet {
-	public List<CardRequest> devuelvelista(UsuarioDAO dao, String nombre,List <CardRequest> cr){
-		System.out.println("Nombre: "+ nombre);
-		List<CardRequest> rs= new ArrayList<CardRequest>();
-		for(CardRequest c: cr){
-			if(dao.getUsuarioByUserId(c.getUser())!=null){
-				System.out.println("user encontrado");
-				Usuario u = dao.getUsuarioByUserId(c.getUser());
-				System.out.println("Universidad: "+ u.getUniversity());
-				if(u.getUniversity().equals(nombre)){
-					System.out.println("Igual fiesta!!");
-					rs.add(c);
-				}
-				
-			}
-		}
-		return rs;
-		
-	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
@@ -71,17 +53,17 @@ public class UniversityServlet extends HttpServlet {
 		List<CardRequest> uc = new ArrayList<CardRequest>();
 		
 		ucr = dao.listRequests("User", "Request");
-		uc = devuelvelista(userDAO,usuario.getName(),ucr);
+		uc = listByUniversity(userDAO,usuario.getName(),ucr);
 		
 		List<CardRequest> acr = new ArrayList<CardRequest>();
 		List<CardRequest> ac = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
-		ac = devuelvelista(userDAO,usuario.getName(),acr);
+		ac = listByUniversity(userDAO,usuario.getName(),acr);
 		
 		List<CardRequest> rcr = new ArrayList<CardRequest>();
 		List<CardRequest> rc = new ArrayList<CardRequest>();
 		rcr = dao.listRequests("Bank", "Rejected");
-		rc = devuelvelista(userDAO,usuario.getName(),rcr);
+		rc = listByUniversity(userDAO,usuario.getName(),rcr);
 		
 		
 
@@ -115,6 +97,25 @@ public class UniversityServlet extends HttpServlet {
 			System.out.println(cr.getEntity());
 		}
 
+	}
+	
+	public List<CardRequest> listByUniversity(UsuarioDAO dao, String nombre,List <CardRequest> cr){
+		System.out.println("Nombre: "+ nombre);
+		List<CardRequest> rs= new ArrayList<CardRequest>();
+		for(CardRequest c: cr){
+			if(dao.getUsuarioByUserId(c.getUser())!=null){
+				System.out.println("user encontrado");
+				Usuario u = dao.getUsuarioByUserId(c.getUser());
+				System.out.println("Universidad: "+ u.getUniversity());
+				if(u.getUniversity().equals(nombre)){
+					System.out.println("Igual fiesta!!");
+					rs.add(c);
+				}
+				
+			}
+		}
+		return rs;
+		
 	}
 
 }

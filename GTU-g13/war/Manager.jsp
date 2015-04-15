@@ -100,6 +100,33 @@
 			</c:forEach>
 
 		</table>
+		
+<p class="aceptadasTexto">Peticiones</p>
+		<table class="table table-hover">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Estado</th>
+				<th>Entidad</th>
+				<th>Borrar</th>
+			</tr>
+
+			<c:forEach items="${cards}" var="card">
+				<tr class="warning">
+					<td><c:out value="${card.id}" /></td>
+					<td><c:out value="${card.user}" /></td>
+					<td><c:out value="${card.state}" /></td>
+					<td><c:out value="${card.entity}" /></td>
+					<td>
+						<form action="/admin" method="post">
+							<input type="hidden" name="cardId" value="${card.id}">
+							<input type="submit" value="Borrar">
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+
+		</table>
 
 </body>
 </html>

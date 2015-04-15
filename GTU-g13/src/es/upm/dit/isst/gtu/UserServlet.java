@@ -58,8 +58,14 @@ public class UserServlet extends HttpServlet {
 		
 		boolean mondero= req.getParameter("monedero")!=null;
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
-		dao.add(entity, userId, mondero, state); 
-		res.sendRedirect("/user");
+		
+		if(dao.getCardRequestByUserId(user.getNickname())!=null){
+			System.out.println("Ya existe una peticion de este usuario");
+			res.sendRedirect("/user");
+		}else{		
+			dao.add(entity, userId, mondero, state); 
+			res.sendRedirect("/user");
+		}
 	}
 
 }

@@ -26,7 +26,7 @@ public class MainServlet extends HttpServlet {
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
 		String	url =	userService.createLoginURL("/register");
-		
+
 		String entity = "";
 		if(user != null){
 			String userId = user.getNickname();
@@ -36,7 +36,7 @@ public class MainServlet extends HttpServlet {
 				entity = entity.toLowerCase();
 			}else{
 				System.out.println(user.getNickname());
-				if(user.getNickname().equals("getsor.gtu.isst")){
+				if(!user.getNickname().equals("gestor.gtu.isst")){
 					Cookie err = new Cookie("error", "1");
 					resp.addCookie(err);
 					resp.sendRedirect("/error");
@@ -57,5 +57,5 @@ public class MainServlet extends HttpServlet {
 			view.forward(req,	resp);
 		}
 	}
-	
+
 }

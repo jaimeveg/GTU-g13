@@ -10,7 +10,7 @@ public interface CardRequestDAO {
 	public List<CardRequest> listRequests(String entity, String state);
 	public void add	(String	entity, String user, boolean monedero, String state);
 	//public void update (long id, String entity);
-	//public List<CardRequest>	getCardRequest(String userId);
+	public CardRequest getCardRequestByUserId(String userId);
 	public void remove	(long id);
 	//public List<String>	getUsers();
 	void updateEntity(long id, String entity);
