@@ -2,6 +2,8 @@ package es.upm.dit.isst.gtu;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,16 +20,19 @@ import es.upm.dit.isst.gtu.dao.CardRequestDAO;
 import es.upm.dit.isst.gtu.dao.CardRequestDAOImpl;
 import es.upm.dit.isst.gtu.dao.UsuarioDAO;
 import es.upm.dit.isst.gtu.dao.UsuarioDAOImpl;
+import es.upm.dit.isst.gtu.model.CardRequest;
 import es.upm.dit.isst.gtu.model.Usuario;
 
-public class UserServlet extends HttpServlet {
+public class ModifyServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 		UsuarioDAO userDAO = UsuarioDAOImpl.getInstance();
+		CardRequestDAO carRequestDAO = CardRequestDAOImpl.getInstance();
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
 		Usuario usuario = null;
+		boolean error = false;
 		
 		String entity = "";
 		if (user!=null && userDAO.getUsuarioByUserId(user.getNickname()) != null){
@@ -40,12 +45,21 @@ public class UserServlet extends HttpServlet {
 			resp.sendRedirect("/error");
 		}
 		
-		String url =	userService.createLogoutURL("/");
+		CardRequest cr = carRequestDAO.getCardRequestByUserId(user.getNickname());
+		
+		if(cr != null){
+			error = true;
+		}
+		
+		List<Usuario> uni = userDAO.listUsersByEntity("University");
+		List<Usuario> bank = userDAO.listUsersByEntity("Bank");
 		
 		resp.setContentType("text/plain");
-		req.getSession().setAttribute("url",	url);
-		req.getSession().setAttribute("user", usuario);
-		RequestDispatcher	view =	req.getRequestDispatcher("User.jsp");
+		req.getSession().setAttribute("error",	error);
+		req.getSession().setAttribute("usuario", usuario);
+		req.getSession().setAttribute("univs", new ArrayList<Usuario>(uni));
+		req.getSession().setAttribute("banks", new ArrayList<Usuario>(bank));
+		RequestDispatcher	view =	req.getRequestDispatcher("Modify.jsp");
 		view.forward(req,	resp);
 	}
 	
@@ -53,29 +67,26 @@ public class UserServlet extends HttpServlet {
 		
 		UserService	userService =	UserServiceFactory.getUserService();
 		User	user =	userService.getCurrentUser();
-		String userId = user.getNickname();
-		String entity = "User";
-		String state = "Request";
+		UsuarioDAO usuarioDAO = UsuarioDAOImpl.getInstance();
+		Usuario usuario = usuarioDAO.getUsuarioByUserId(user.getNickname());
+		Long id = usuario.getId();
 		
-		boolean mondero= req.getParameter("monedero")!=null;
-		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
+		String name = req.getParameter("name");
+		String surname = req.getParameter("surname");
+		String dni = req.getParameter("dni");
+		String university = req.getParameter("university");
+		String bank = req.getParameter("bank");
 		
-		if(dao.getCardRequestByUserId(user.getNickname())!=null){
-			System.out.println("Ya existe una peticion de este usuario");
+		if(bank == null || university == null){
 			PrintWriter out = res.getWriter();  
 			res.setContentType("text/html");  
 			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Ya ha realizado una petición. Por favor solicite su eliminación para realizar una nueva petición.');");
-			out.println("window.location.href='/user'");
+			out.println("alert('Se deben rellenar los campos Universidad y Banco con uno de entre los disponibles.');");
+			out.println("window.location.href='/modify'");
 			out.println("</script>");
 		}else{		
-			dao.add(entity, userId, mondero, state); 
-			PrintWriter out = res.getWriter();  
-			res.setContentType("text/html");  
-			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Peición realizada con éxito.');");
-			out.println("window.location.href='/user'");
-			out.println("</script>");
+			usuarioDAO.updateUser(id, name, surname, dni, university, bank); 
+			res.sendRedirect("/user");
 		}
 	}
 

@@ -39,12 +39,12 @@
 
 
 	</table>
+	<p>La solicitud se eliminará cuando el gestor de la página procese su petición</p>
 </c:if>
 <c:if test="${card	==	null}">
 	<p>El usuario no ha realizado ninguna peticion</p>
 </c:if>
 
-	<p>La solicitud se eliminará cuando el gestor de la página procese su petición</p>
 	<a href="/user">Volver</a>
 
 </body>

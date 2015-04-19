@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import es.upm.dit.isst.gtu.model.CardRequest;
 import es.upm.dit.isst.gtu.model.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -81,6 +80,25 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			}
 		}
 
+	}
+	
+	public void updateUser(long id, String name, String surname, String dni, String university, String bank) {
+
+		synchronized (this)	{
+			EntityManager em = EMFService.get().createEntityManager();
+			try {
+				Usuario usuario = em.find(Usuario.class, id);
+				usuario.setName(name);
+				usuario.setSurname(surname);
+				usuario.setDni(dni);
+				usuario.setUniversity(university);
+				usuario.setBank(bank);
+				em.merge(usuario);
+			} finally {
+				em.close();
+			}
+		}
+		
 	}
 
 }

@@ -59,7 +59,7 @@
 				<br>
 				<div class="col-lg-6">
 
-					<a href="/">Modificar datos de usuario</a>
+					<a href="/modify">Modificar datos de usuario</a>
 				</div>
 			</form>
 

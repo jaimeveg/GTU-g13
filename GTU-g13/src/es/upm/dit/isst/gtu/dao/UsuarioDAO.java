@@ -10,5 +10,6 @@ public interface UsuarioDAO {
 	public Usuario getUsuarioByUserId(String userId);
 	public List<Usuario> listUsersByEntity(String entity);
 	public void remove(Long id);
+	public void updateUser(long id, String name, String surname, String dni, String university, String bank);
 
 }
