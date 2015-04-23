@@ -59,6 +59,7 @@
 					<td>
 						<form action="/stamp" method="post">
 							<input type="hidden" name="id" value="${card.id}">
+							<input type="hidden" name="user" value="${card.user}">
 							<input type="hidden" name="action" value="Accept">
 							<input type="submit" value="Aceptar Petición">
 						</form>

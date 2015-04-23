@@ -79,10 +79,8 @@ public class StampServlet extends HttpServlet {
 		if (action.equals("Accept")){
 			state = "Accept";
 			
-			try {
-				CardRequest cr = dao.getCardRequestByUserId(id);
-					
-				String name = cr.getUser();
+			try {			
+				String name = req.getParameter("user");
 				String email = name+"@gmail.com";
 				Properties props = new Properties();
 				Session session = Session.getDefaultInstance(props, null);
