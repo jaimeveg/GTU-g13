@@ -70,10 +70,6 @@ public class StampServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
-		UsuarioDAO userDAO = UsuarioDAOImpl.getInstance();
-		UserService	userService = UserServiceFactory.getUserService();
-		User user =	userService.getCurrentUser();
-		
 		String action = req.getParameter("action");
 		String id = req.getParameter("id");
 		String entity = "Stamp";
@@ -84,28 +80,24 @@ public class StampServlet extends HttpServlet {
 			state = "Accept";
 			
 			try {
-				if (user!=null && userDAO.getUsuarioByUserId(user.getNickname()) != null){
-					Usuario usuario = userDAO.getUsuarioByUserId(user.getNickname());
-					String name = usuario.getName();
-					String email = user.getEmail();
-					Properties props = new Properties();
-					Session session = Session.getDefaultInstance(props, null);
-					Message msg = new MimeMessage(session);
+				CardRequest cr = dao.getCardRequestByUserId(id);
 					
-					msg.setFrom(new InternetAddress("noreply@gtu-g13-isst-2015.appspotmail.com", "GTU"));
-					msg.addRecipient(Message.RecipientType.TO,
-							new InternetAddress(email, name));
-					msg.setSubject("Petición de tarjeta aceptada");
-					String msgBody = "Buenos días," + System.getProperty("line.separator") + "tu petición de tarjeta universitaria ha sido aceptada. A continuación será estampada y te llegará por correo en el plazo de una semana a la dirección que diste al registrarte.";
-					msgBody += System.getProperty("line.separator") + "Saludos," + System.getProperty("line.separator") + "Servicio de Gestión de Tarjetas Universitarias";
-					msg.setText(msgBody);
-					Transport.send(msg);		
-					
-				} else {				
-					Cookie err = new Cookie("error", "0");
-					res.addCookie(err);
-					res.sendRedirect("/error");					
-				}
+				String name = cr.getUser();
+				String email = name+"@gmail.com";
+				Properties props = new Properties();
+				Session session = Session.getDefaultInstance(props, null);
+				Message msg = new MimeMessage(session);
+				
+				msg.setFrom(new InternetAddress("noreply@gtu-g13-isst-2015.appspotmail.com", "GTU"));
+				msg.addRecipient(Message.RecipientType.TO,
+						new InternetAddress(email, name));
+				msg.setSubject("Solicitud de tarjeta aceptada");
+				String msgBody = "Buenos días," + System.getProperty("line.separator") + "su petición de tarjeta universitaria ha sido aceptada. A continuación será estampada y le llegará por correo en el plazo de una semana a la dirección que dio al registrarse.";
+				msgBody += System.getProperty("line.separator") + "Saludos," + System.getProperty("line.separator") + "Servicio de Gestión de Tarjetas Universitarias";
+				msg.setText(msgBody);
+				Transport.send(msg);		
+				System.out.println("email mandado a:" + email);
+				
 			} catch(Exception e) {e.printStackTrace();}
 			
 		} else if (action.equals("Reject")){
