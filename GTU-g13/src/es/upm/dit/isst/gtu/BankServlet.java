@@ -83,7 +83,7 @@ public class BankServlet extends HttpServlet {
 		List<CardRequest> acr = new ArrayList<CardRequest>();
 		List<CardRequest> ac = new ArrayList<CardRequest>();
 		acr = dao.listRequests("Stamp", "Accept");
-		ac = listByBank(userDAO,usuario.getSurname(),acr);
+		ac = listByBank(userDAO,usuario.getName(),acr);
 
 		resp.setContentType("text/plain");
 		req.getSession().setAttribute("url",	url);
