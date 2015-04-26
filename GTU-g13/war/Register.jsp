@@ -22,9 +22,20 @@
 		if (strEntity === "User") {
 			document.getElementById('fields').style.display = 'block';
 			document.getElementById('fields2').style.display = 'none';
+			document.getElementById('fotoAvatar').src = "img/user2.png";
 		} else {
 			document.getElementById('fields').style.display = 'none';
 			document.getElementById('fields2').style.display = 'block';
+			if (strEntity === "University") {
+				document.getElementById('fotoAvatar').src = "img/universidad.png";
+			}
+			if (strEntity === "Bank"){			
+			document.getElementById('fotoAvatar').src = "img/banco.png";
+			}
+			if (strEntity === "Stamp"){
+				document.getElementById('fotoAvatar').src = "img/estampadora.png";
+			}
+				
 		}
 	}
 	
@@ -56,19 +67,19 @@
 				int i = (int) Math.floor(Math.random() * (4 - 1 + 1) + 1);
 				if (i == 1) {
 			%>
-			<img class="avatar" src="img/user1.png"> </img>
+			<img id="fotoAvatar" class="avatar" src="img/user1.png"> </img>
 			<%
 				} else if (i == 2) {
 			%>
-			<img class="avatar" src="img/user2.png"> </img>
+			<img  id="fotoAvatar" class="avatar" src="img/user2.png"> </img>
 			<%
 				} else if (i == 3) {
 			%>
-			<img class="avatar" src="img/user3.png"> </img>
+			<img  id="fotoAvatar" class="avatar" src="img/user3.png"> </img>
 			<%
 				} else if (i == 4) {
 			%>
-			<img class="avatar" src="img/user4.png"> </img>
+			<img  id="fotoAvatar" class="avatar" src="img/user4.png"> </img>
 			<%
 				}
 			%>

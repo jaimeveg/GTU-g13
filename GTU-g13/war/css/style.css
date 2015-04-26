@@ -114,3 +114,8 @@ body {
 	width: 50%;
 	margin: 0 auto;
 }
+.logout {
+	font-family: 'Bebas';
+	font-size: 20px;
+	float:right;
+}
