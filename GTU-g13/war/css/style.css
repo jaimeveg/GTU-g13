@@ -98,7 +98,7 @@ body {
 }
 
 .container {
-
+	width: 80%;
 	margin-top: 60px;
 	margin-left: 50px;
 }
@@ -107,5 +107,10 @@ body {
 }
 .consulta{
 	width: 80%;
+	margin: 0 auto;
+}
+.formulario {
+	padding-top: 40px;
+	width: 50%;
 	margin: 0 auto;
 }

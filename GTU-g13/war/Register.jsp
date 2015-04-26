@@ -1,9 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.lang.Math"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+<head>
+<title>Página de registro</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="stylesheet" href="css/style.css">
+<!-- Bootstrap -->
+<link href="css/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <script type="text/javascript">
 	function entityCheck() {
 		var e = document.getElementById("entity");
@@ -16,24 +27,8 @@
 			document.getElementById('fields2').style.display = 'block';
 		}
 	}
+	
 </script>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/style.css">
-
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Página de registro</title>
 </head>
 <body>
 	<div class="row titulo">
@@ -81,101 +76,81 @@
 
 	</div>
 
+	<form class="formulario" method="post">
+		<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
 
-	<div class="container">
-		<div class="row">
-			<form role="form" method="post">
-				<div class="col-lg-6">
-					<div class="form-group">
-						<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
-						<label for="InputName">Entidad</label> 
-						<select	class="form-control" name="entity" id="entity" onclick="javascript:entityCheck();">
-							<option value="User">Usuario</option>
-							<option value="University">Universidad</option>
-							<option value="Bank">Banco</option>
-							<option value="Stamp">Estampadora </option>
-						</select>
-					</div>
+		<label style="color: #A4A4A4;">ENTIDAD</label> <select class="form-control" name="entity"
+			id="entity" onChange="javascript:entityCheck();">
+			<option value="User">Usuario</option>
+			<option value="University">Universidad</option>
+			<option value="Bank">Banco</option>
+			<option value="Stamp">Estampadora</option>
+		</select> <br>
 
-					<div id="fields">
+		<div id="fields">
 
-						<div class="form-group">
-							<label>Nombre</label>
-							<div class="input-group">
-								<input type="text" class="form-control" name="name"
-									 placeholder="Introduce tu nombre" required>
-								<span class="input-group-addon"><span
-									class="glyphicon glyphicon-asterisk"></span></span>
-							</div>
-						</div>
-						<div class="form-group">
-							<label >Apellidos</label>
-							<div class="input-group">
-								<input type="text" class="form-control" name="surname"
-									placeholder="Introduce tus apellidos" required>
-								<span class="input-group-addon"><span
-									class="glyphicon glyphicon-asterisk"></span></span>
-							</div>
-						</div>
-						<div class="form-group">
-							<label>DNI</label>
-							<div class="input-group">
-								<input type="text" class="form-control" name="dni"
-									placeholder="Introduce tu DNI" required>
-								<span class="input-group-addon"><span
-									class="glyphicon glyphicon-asterisk"></span></span>
-							</div>
-						</div>
-
-						<label >Elije tu Universidad</label> 
-						<select	class="form-control" name="university">
-							<option value=""></option>
-							<c:forEach items="${univs}" var="univ">
-								<option vale="${univ.surname}">${univ.name}</option>
-							</c:forEach>
-						</select> 
-						<label>Elije tu Banco</label> 
-						<select	class="form-control" name="bank">
-							<option value=""></option>
-							<c:forEach items="${banks}" var="bank">
-								<option vale="${bank.surname}">${bank.name}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div id="fields2" style="display: none">
-
-						<div class="form-group">
-							<label>Nombre de la entidad</label>
-							<div class="input-group">
-								<input type="text" class="form-control" name="entityName"
-									placeholder="Introduce el nombre completo de la entidad"> 
-									<span class="input-group-addon"><span
-									class="glyphicon glyphicon-asterisk"></span></span>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="InputName">Abreviatura de la entidad</label>
-							<div class="input-group">
-								<input type="text" class="form-control" name="entityAb"
-									placeholder="Introduce la abreviatura de la entidad">
-								<span class="input-group-addon"><span
-									class="glyphicon glyphicon-asterisk"></span></span>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="well well-sm">
-						<strong id="obligatorio"><span
-							class="glyphicon glyphicon-asterisk"></span> Campo Obligatorio</strong>
-					</div>
-					<input type="submit" value="Haz tu petición" class="btn btn-info pull-right">
+			<!-- Campo del nombre -->
+			<div class="form-group">
+				<label>NOMBRE</label>
+				<div class="input-group">
+					<input class="form-control" placeholder="Introduce tu nombre" type="text" name="name" required> 
+					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
-			</form>
-
+			</div>
+			
+			<!-- Campo del Apellido -->
+			<div class="form-group">
+				<label>APELLIDOS</label> 
+				<div class="input-group">
+					<input class="form-control" placeholder="Introduce tus apellidos" type="text" name="surname" required>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				</div>
+			</div>
+			
+			<!--  Campo del DNI -->
+			
+			<div class="form-group">
+			<label> DNI</label>
+			<div class="input-group">
+			 	<input class="form-control" placeholder="Introduce tu DNI" type="text" name="dni" required> <br>
+			 	<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>			
+			</div>
+			</div>
+			
+			<!-- Selects de Banco y Universidad -->
+			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Universidad</label> 
+			<select class="form-control"  name="university" required>
+				<option value=""></option>
+				<c:forEach items="${univs}" var="univ">
+					<option vale="${univ.surname}">${univ.name}</option>
+				</c:forEach>
+			</select> 
+			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Banco</label>
+			<select class="form-control" name="bank" required>
+				<option value=""></option>
+				<c:forEach items="${banks}" var="bank">
+					<option vale="${bank.surname}">${bank.name}</option>
+				</c:forEach>
+			</select>
 		</div>
-	</div>
-
-
+		<div id="fields2" style="display:none;">
+			<div class="form-group">
+				<label> Nombre de la entidad</label>
+				<div class="input-group">
+					<input  class="form-control" placeholder="Introduce el nombre completo de tu entidad" type="text" name="entityName" required>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label> Abreviatura </label>  
+				<div class="input-group">
+					<input  class="form-control" placeholder="Introduce la abreviatura de tu entidad" type="text" name="entityAb" required>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				</div>
+			</div>
+		</div>
+		<input  value="Haz tu petición" class="btn btn-info pull-right" type="submit">
+	</form>
+	</p>
 </body>
 </html>
