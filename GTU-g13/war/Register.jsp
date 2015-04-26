@@ -84,58 +84,58 @@
 
 	<div class="container">
 		<div class="row">
-			<form role="form" method="post" novalidate>
+			<form role="form" method="post">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
 						<label for="InputName">Entidad</label> 
-						<select	class="form-control" name="entity" id="entity"
-							onclick="javascript:entityCheck();">
+						<select	class="form-control" name="entity" id="entity" onclick="javascript:entityCheck();">
 							<option value="User">Usuario</option>
 							<option value="University">Universidad</option>
 							<option value="Bank">Banco</option>
-							<option value="Stamp">Estampadora</option>
+							<option value="Stamp">Estampadora </option>
 						</select>
 					</div>
 
 					<div id="fields">
 
 						<div class="form-group">
-							<label for="InputName">Nombre</label>
+							<label>Nombre</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="name"
-									id="InputName" placeholder="Introduce tu nombre" required>
+									 placeholder="Introduce tu nombre" required>
 								<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="InputName">Apellidos</label>
+							<label >Apellidos</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="surname"
-									id="InputName" placeholder="Introduce tus apellidos" required>
+									placeholder="Introduce tus apellidos" required>
 								<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="InputName">DNI</label>
+							<label>DNI</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="dni"
-									id="InputName" placeholder="Introduce tu DNI" required>
+									placeholder="Introduce tu DNI" required>
 								<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
 							</div>
 						</div>
 
-						<label for="InputName">Elije tu Universidad</label> <select
-							class="form-control" name="university">
+						<label >Elije tu Universidad</label> 
+						<select	class="form-control" name="university">
 							<option value=""></option>
 							<c:forEach items="${univs}" var="univ">
 								<option vale="${univ.surname}">${univ.name}</option>
 							</c:forEach>
-						</select> <label for="InputName">Elije tu Banco</label> <select
-							class="form-control" name="bank">
+						</select> 
+						<label>Elije tu Banco</label> 
+						<select	class="form-control" name="bank">
 							<option value=""></option>
 							<c:forEach items="${banks}" var="bank">
 								<option vale="${bank.surname}">${bank.name}</option>
@@ -145,10 +145,9 @@
 					<div id="fields2" style="display: none">
 
 						<div class="form-group">
-							<label for="InputName">Nombre de la entidad</label>
+							<label>Nombre de la entidad</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="entityName"
-									id="InputName"
 									placeholder="Introduce el nombre completo de la entidad"
 									required> <span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
@@ -158,7 +157,6 @@
 							<label for="InputName">Abreviatura de la entidad</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="entityAb"
-									id="InputName"
 									placeholder="Introduce la abreviatura de la entidad" required>
 								<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
@@ -171,22 +169,12 @@
 						<strong id="obligatorio"><span
 							class="glyphicon glyphicon-asterisk"></span> Campo Obligatorio</strong>
 					</div>
-					<input type="submit" name="submit" id="submit"
-						value="Haz tu petición" class="btn btn-info pull-right">
+					<input type="submit" value="Haz tu petición" class="btn btn-info pull-right">
 				</div>
 			</form>
 
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
 
 
 </body>
