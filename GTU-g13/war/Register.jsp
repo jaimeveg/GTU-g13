@@ -148,8 +148,8 @@
 							<label>Nombre de la entidad</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="entityName"
-									placeholder="Introduce el nombre completo de la entidad"
-									required> <span class="input-group-addon"><span
+									placeholder="Introduce el nombre completo de la entidad"> 
+									<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
 							</div>
 						</div>
@@ -157,7 +157,7 @@
 							<label for="InputName">Abreviatura de la entidad</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="entityAb"
-									placeholder="Introduce la abreviatura de la entidad" required>
+									placeholder="Introduce la abreviatura de la entidad">
 								<span class="input-group-addon"><span
 									class="glyphicon glyphicon-asterisk"></span></span>
 							</div>
