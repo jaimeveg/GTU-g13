@@ -160,7 +160,7 @@
 				</div>
 			</div>
 		</div>
-		<input  value="Haz tu petición" class="btn btn-info pull-right" type="submit">
+		<input  value="Haz tu petición" id ="peticionBtn" class="btn btn-info pull-right" type="submit">
 	</form>
 	</p>
 </body>
