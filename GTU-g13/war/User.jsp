@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,56 +25,57 @@
 		</div>
 		<div class="col-lg-9 col-md-9 col-xs-9 col-sm-9">
 			<div class="row">
-				<h1 class="textTitulo primeraFila"> Hola <c:out value="${user.name}" /> </h1>
+				<h1 class="textTitulo primeraFila">
+					Hola,
+					<c:out value="${user.name}" />
+				</h1>
 			</div>
 			<div class="row">
-				<h1 class="textTitulo segundaFila">Completa la solicitud</h1>
+				<h1 class="textTitulo segundaFila">Gestiona tu solicitud</h1>
 			</div>
 		</div>
 
 	</div>
 
-	<a href="<c:url value="${url}"/>">LOG OUT</a>
+	<a class="logout" href="<c:url value="${url}"/>">LOG OUT</a>
 
-	<div class="container formulario">
-		<div action="/user" role="form">
-			<form role="form" method="post">
-				<div class="col-lg-6">
+	<div class="row">
+		<p class="texto">¿Aún no has pedido tu tarjeta?</p>
+	</div>
+	<div class="row" action="/user" role="form">
 
-					<div class="form-group">
-						<input name="monedero" type="checkbox" value="checked" /> ¿Desea
-						la funcionalidad de tarjeta monedero?
+		<div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+			<img class="fotoTarjeta" src="img/tarjeta.png"> </img>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 form">
+
+			<form method="post">
+				
+					<div class="row">
+						<input id="monedero" name="monedero" type="checkbox" value="checked" /> ¿Desea
+					la funcionalidad de tarjeta monedero? 
 					</div>
-
-					<div class="col-lg-6">
-
-						<input style="width: 100%;" type="submit" name="submit"
-							id="submit" value="Pedir Tarjeta" class="btn btn-info pull-right">
+					<div class="row">
+						<input 	type="submit" name="submit" id="submit2" value="Solicitar Tarjeta"
+						class="btn btn-info">
 					</div>
-				</div>
-				<div class="col-lg-6">
+					<div class="row textoAzul">
+						<a href="/modify">Modificar datos de usuario</a>
+					</div>
+				
+			
 
-					<a href="/consulta">Consultar estado de peticion</a>
+				<div class="row final">
+					<p class="texto">Si ya la tienes...</p>
+					<a class="textoAzul" href="/consulta">Consultar estado de peticion</a>
 				</div>
-				<br>
-				<div class="col-lg-6">
 
-					<a href="/modify">Modificar datos de usuario</a>
-				</div>
+				
 			</form>
 
-			<div style="visibility: hidden;" class="col-lg-5 col-md-push-1">
-				<div class="col-md-12">
-					<div class="alert alert-success">
-						<strong><span class="glyphicon glyphicon-ok"></span>
-							Success! Message sent.</strong>
-					</div>
-					<div class="alert alert-danger">
-						<span class="glyphicon glyphicon-remove"></span><strong>
-							Error! Please check all page inputs.</strong>
-					</div>
-				</div>
-			</div>
+
+
 		</div>
 	</div>
 	<!-- Librería jQuery requerida por los plugins de JavaScript -->

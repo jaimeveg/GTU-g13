@@ -48,10 +48,10 @@
 		</div>
 		<div class="col-lg-9 col-md-9 col-xs-9 col-sm-9">
 			<div class="row">
-				<h1 class="textTitulo primeraFila">REGISTRO DE USUARIO</h1>
+				<h1 class="textTitulo primeraFila">Date de alta en nuestro sistema</h1>
 			</div>
 			<div class="row">
-				<h1 class="textTitulo segundaFila">PIDE YA TU TARJETA</h1>
+				<h1 class="textTitulo segundaFila">REGISTRO DE USUARIO</h1>
 			</div>
 		</div>
 
@@ -160,7 +160,7 @@
 				</div>
 			</div>
 		</div>
-		<input  value="Haz tu petición" id ="peticionBtn" class="btn btn-info pull-right" type="submit">
+		<input  value="Regístrate" id ="peticionBtn" class="btn btn-info pull-right" type="submit">
 	</form>
 	</p>
 </body>
