@@ -123,7 +123,7 @@ body {
 	margin-right: 35px;
 	margin-top: 20px;
 }
-#peticionBtn {
+.peticion {
 	margin-top: 15px;
 	margin-bottom: 40px;
 }
@@ -162,4 +162,8 @@ body {
 	float:left;
 	margin-left: -268px;
 	
+}
+.volverBtn{
+	margin-left: 400px;
+	margin-bottom:40px;
 }
