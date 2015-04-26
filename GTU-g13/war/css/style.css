@@ -2,59 +2,66 @@
 	font-family: 'Bebas';
 	src: url('BebasNeuewebfont.otf');
 }
-body{
-	background-color:#E6E6E6;
+
+body {
+	background-color: #E6E6E6;
 }
 
-.titulo{
+.titulo {
 	background-color: #2e2e2e;
 	height: 200px;
 	font-family: 'Bebas';
 }
 
-#fotoTitulo{
+#fotoTitulo {
 	margin-left: 20px;
 	height: 300px;
 	width: auto;
 }
 
-.textTitulo{
-	color:#E6E6E6;
+.textTitulo {
+	color: #E6E6E6;
 }
-.primeraFila{
-	margin-top:50px;
+
+.primeraFila {
+	margin-top: 50px;
 	font-size: 25px;
 }
-.segundaFila{
+
+.segundaFila {
 	font-size: 50px;
 	margin-top: 20px;
 	margin-left: 8%;
-
 }
-.textoAccede{
+
+.textoAccede {
 	font-family: 'Bebas';
 	font-size: 26px;
 	margin-top: 10px;
 	float: right;
 	margin-right: 100px;
 }
-.icono{
+
+.icono {
 	height: 200px;
 	width: auto;
 	-webkit-transition: all 0.4s;
 }
-.icono:hover{
+
+.icono:hover {
 	height: 230px;
 	width: auto;
-	
 }
-.iconos{
+
+.iconos {
 	margin-left: 17%;
 }
-.formulario{
+
+.formulario {
 	margin-top: 50px;
 }
-.tablas{
+
+.tablas {
 	margin-bottom: 40px;
 }
 
@@ -62,4 +69,43 @@ body{
 	font-family: 'Bebas';
 	font-size: 25px;
 	margin-top: 20px;
+}
+
+.usuarioAvatar {
+	margin-top: 20px;
+	margin-right: 20px;
+	float: right;
+}
+
+.usuario {
+	margin-top: 8px; color : #337ab7;
+	font-family: 'Bebas';
+	font-size: 30px;
+	color: #337ab7;
+}
+
+.avatar {
+	width: 70px;
+	height: auto;
+}
+
+#obligatorio {
+	font-size: 10px;
+}
+
+.well {
+	margin-top: 20px;
+}
+
+.container {
+
+	margin-top: 60px;
+	margin-left: 50px;
+}
+#submit{
+	margin-bottom: 40px;
+}
+.consulta{
+	width: 80%;
+	margin: 0 auto;
 }
