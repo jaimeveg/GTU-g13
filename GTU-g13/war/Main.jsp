@@ -45,10 +45,14 @@
 	</div>
 	<div class="row">
 		<div class="textoAccede">
-		<a href="<c:url value="${url}"/>">REGISTRO</a>
-		<a href="<c:url value="${urlLogin}"/>">LOG IN</a>
+		<a style="color: #24547c;" href="<c:url value="${url}"/>">REGISTRO</a>
+		<a style="color:#377bb5;" href="<c:url value="${urlLogin}"/>">LOG IN</a>
 		</div>
 
+	</div>
+	<div class="row">
+	
+		<img src="img/fondo.png" class="imagenFondo">
 	</div>
 	<div class="row" style="display:none">
 		<div class="col-xs-7 col-md-7 col-lg-7 col-sm-7 iconos">

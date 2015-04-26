@@ -35,7 +35,7 @@
 
 	</div>
 
-	<a href="<c:url value="${url}"/>">LOG OUT</a>
+	<a class="logoutAdmin" href="<c:url value="${url}"/>">LOG OUT</a>
 
 	<div class="col-md-8 col-xs-8 col-lg-8 col-sm-8 tablas ">
 

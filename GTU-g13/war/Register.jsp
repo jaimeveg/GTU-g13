@@ -160,7 +160,7 @@
 				</div>
 			</div>
 		</div>
-		<input  value="Regístrate" id ="peticionBtn" class="btn btn-info pull-right" type="submit">
+		<input  value="Regístrate" class="peticion btn btn-info pull-right" type="submit">
 	</form>
 	</p>
 </body>

@@ -12,7 +12,41 @@ body {
 	height: 200px;
 	font-family: 'Bebas';
 }
+.tituloError{
+	background-color: #a33e3e;
+	height: 200px;
+	font-family: 'Bebas';
+	
+}
+.tituloAdmin{
+	background-color: #4d76b2;
+	height: 200px;
+	font-family: 'Bebas';
+	
+}
+.logoutAdmin {
+	font-family: 'Bebas';
+	font-size: 30px;
+	float:right;
+	margin-right: 35px;
+	margin-top: 20px;
+}
+.imagenFondo{
+	margin-top:-250px;
+	max-width: 700px;
+}
+.textoError{
+	font-family: 'Bebas';
+	font-size: 30px;
 
+}
+.derechaError{
+	margin-top: 120px;
+}
+.fotoError{
+	margin-top: 50px;
+	width:80%;
+}
 #fotoTitulo {
 	margin-left: 20px;
 	height: 300px;
@@ -36,10 +70,11 @@ body {
 
 .textoAccede {
 	font-family: 'Bebas';
-	font-size: 26px;
-	margin-top: 10px;
-	float: right;
-	margin-right: 100px;
+	font-size: 46px;
+	margin-top: 200px;
+	float:right;
+	margin-right: 500px;
+	text-shadow: 0.1em 0.1em 0.2em #949596;
 }
 
 .icono {
@@ -98,7 +133,13 @@ body {
 .well {
 	margin-top: 20px;
 }
+.containerAdmin {
+	width: 80%;
+	margin-top: 100px;
+	margin-left:auto;
+	margin-right:auto;
 
+}
 .container {
 	width: 80%;
 	margin-top: 60px;
@@ -166,4 +207,21 @@ body {
 .volverBtn{
 	margin-left: 400px;
 	margin-bottom:40px;
+}
+.volverBtnNoExiste{
+	margin-left: 100px;
+	margin-bottom:40px;
+	margin-top: 67px;
+}
+.warningFoto{
+	max-width: 800px;
+	heigth: auto;
+	margin: 0 auto;
+	
+}
+.noExisteFoto{
+	max-width: 550px;
+	heigth: auto;
+	margin: 0 auto;
+	
 }

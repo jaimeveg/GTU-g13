@@ -33,7 +33,7 @@
 
 	</div>
 	
-	<a href="<c:url value="${url}"/>">LOG OUT</a>
+	<a class="logoutAdmin" href="<c:url value="${url}"/>">LOG OUT</a>
 	
 	<div class="col-md-8 col-xs-8 col-lg-8 col-sm-8 ">		
 	
@@ -84,7 +84,7 @@
 		</tr>
 		
 		<c:forEach items="${cardsm}" var="card">
-			<tr class="warning">
+			<tr class="info">
 				<td><c:out value="${card.id}" /></td>
 				<td><c:out value="${card.user}" /></td>
 				<td><c:out value="${card.entity}" /></td>
@@ -121,7 +121,7 @@
 		
 		<c:forEach items="${rejected}" var="reject">
 		
-			<tr class="warning">
+			<tr class="danger">
 				<td><c:out value="${reject.id}" /></td>
 				<td><c:out value="${reject.user}" /></td>
 				<td> - </td>

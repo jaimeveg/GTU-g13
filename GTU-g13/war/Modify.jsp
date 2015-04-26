@@ -109,7 +109,8 @@
 	</p>
 </c:if>
 <c:if test="${error}">
-	<p>Ya tienes una solicitud en curso. Para poder cambiar tus dato primero debes cancelar tu solicituds</p>
+	
+	<img src="img/warning.png" class="warningFoto">
 </c:if>
 
 <p>

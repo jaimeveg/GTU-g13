@@ -5,10 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Administrador el Sistema</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Bootstrap -->
+<link href="css/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
-<a href="<c:url value="${url}"/>">LOG OUT</a>
+<div class="row tituloAdmin">
+		<div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+			<img id="fotoTitulo" src="img/tarjetasAdmin.png"> </img>
+		</div>
+		<div class="col-lg-9 col-md-9 col-xs-9 col-sm-9">
+			<div class="row">
+				<h1 class="textTitulo primeraFila">BIENVENIDO AL</h1>
+			</div>
+			<div class="row">
+				<h1 class="textTitulo segundaFila">SISTEMA DE GESTIÓN DE
+					TARJETAS UNIVERSITARIAS</h1>
+			</div>
+		</div>
+
+	</div>
+<a class="logoutAdmin" href="<c:url value="${url}"/>">LOG OUT</a>
+
+
+<div class="containerAdmin">
 <p class="aceptadasTexto">Usuarios</p>
 		<table class="table table-hover">
 			<tr>
@@ -24,7 +46,7 @@
 					<td>
 						<form action="/admin" method="post">
 							<input type="hidden" name="id" value="${usuario.id}">
-							<input type="submit" value="Borrar">
+							<input class="btn btn-danger" type="submit" value="Borrar">
 						</form>
 					</td>
 				</tr>
@@ -41,13 +63,13 @@
 			</tr>
 
 			<c:forEach items="${universidades}" var="universidad">
-				<tr class="warning">
+				<tr class="danger">
 					<td><c:out value="${universidad.id}" /></td>
 					<td><c:out value="${universidad.name}" /></td>
 					<td>
 						<form action="/admin" method="post">
 							<input type="hidden" name="id" value="${universidad.id}">
-							<input type="submit" value="Borrar">
+							<input class="btn btn-danger" type="submit" value="Borrar">
 						</form>
 					</td>
 				</tr>
@@ -64,13 +86,13 @@
 			</tr>
 
 			<c:forEach items="${bancos}" var="banco">
-				<tr class="warning">
+				<tr class="success">
 					<td><c:out value="${banco.id}" /></td>
 					<td><c:out value="${banco.name}" /></td>
 					<td>
 						<form action="/admin" method="post">
 							<input type="hidden" name="id" value="${banco.id}">
-							<input type="submit" value="Borrar">
+							<input  class="btn btn-danger" type="submit" value="Borrar">
 						</form>
 					</td>
 				</tr>
@@ -87,13 +109,13 @@
 			</tr>
 
 			<c:forEach items="${estampadoras}" var="estampadora">
-				<tr class="warning">
+				<tr class="info">
 					<td><c:out value="${estampadora.id}" /></td>
 					<td><c:out value="${estampadora.name}" /></td>
 					<td>
 						<form action="/admin" method="post">
 							<input type="hidden" name="id" value="${estampadora.id}">
-							<input type="submit" value="Borrar">
+							<input  class="btn btn-danger" type="submit" value="Borrar">
 						</form>
 					</td>
 				</tr>
@@ -120,13 +142,13 @@
 					<td>
 						<form action="/admin" method="post">
 							<input type="hidden" name="cardId" value="${card.id}">
-							<input type="submit" value="Borrar">
+							<input class="btn btn-danger" type="submit" value="Borrar">
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
 
 		</table>
-
+</div>
 </body>
 </html>
