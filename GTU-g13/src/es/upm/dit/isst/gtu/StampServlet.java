@@ -70,12 +70,17 @@ public class StampServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 
+		UserService	userService =	UserServiceFactory.getUserService();
+		User	user =	userService.getCurrentUser();
+		
 		String action = req.getParameter("action");
 		String id = req.getParameter("id");
 		String entity = "Stamp";
 		String state = "";
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
+		UsuarioDAO userDAO = UsuarioDAOImpl.getInstance();
 		dao.updateEntity(Long.parseLong(id), entity);
+		
 		if (action.equals("Accept")){
 			state = "Accept";
 			
@@ -91,6 +96,32 @@ public class StampServlet extends HttpServlet {
 						new InternetAddress(email, name));
 				msg.setSubject("Solicitud de tarjeta aceptada");
 				String msgBody = "Buenos días," + System.getProperty("line.separator") + "su petición de tarjeta universitaria ha sido aceptada. A continuación será estampada y le llegará por correo en el plazo de una semana a la dirección que dio al registrarse.";
+				msgBody += System.getProperty("line.separator") + "Saludos," + System.getProperty("line.separator") + "Servicio de Gestión de Tarjetas Universitarias";
+				msg.setText(msgBody);
+				Transport.send(msg);		
+				System.out.println("email mandado a:" + email);
+				
+			} catch(Exception e) {e.printStackTrace();}
+			
+			try {			
+				Usuario usuario = userDAO.getUsuarioByUserId(req.getParameter("user"));
+				String stamp = user.getNickname();
+				String email = stamp+"@gmail.com";
+				Properties props = new Properties();
+				Session session = Session.getDefaultInstance(props, null);
+				Message msg = new MimeMessage(session);
+				
+				msg.setFrom(new InternetAddress("noreply@gtu-g13-isst-2015.appspotmail.com", "GTU"));
+				msg.addRecipient(Message.RecipientType.TO,
+						new InternetAddress(email, stamp));
+				msg.setSubject("Datos de nueva tarjeta");
+				String msgBody = "Buenos días," + System.getProperty("line.separator") + "Los datos de la nueva tarjeta a estampar son:";
+				msgBody += System.getProperty("line.separator") + "Nombre: " + usuario.getName();
+				msgBody += System.getProperty("line.separator") + "Apellidos: " + usuario.getSurname();
+				msgBody += System.getProperty("line.separator") + "DNI: " + usuario.getDni();
+				msgBody += System.getProperty("line.separator") + "Dirección: " + usuario.getAddress();
+				msgBody += System.getProperty("line.separator") + "Universidad: " + usuario.getUniversity();
+				msgBody += System.getProperty("line.separator") + "Banco: " + usuario.getBank();
 				msgBody += System.getProperty("line.separator") + "Saludos," + System.getProperty("line.separator") + "Servicio de Gestión de Tarjetas Universitarias";
 				msg.setText(msgBody);
 				Transport.send(msg);		
