@@ -128,6 +128,16 @@
 			</div>
 			</div>
 			
+			<!--  Campo del DNI -->
+			
+			<div class="form-group">
+			<label> Domicilio </label>
+			<div class="input-group">
+			 	<input class="form-control" placeholder="Introduce tu Domicilio" type="text" name="address" > <br>
+			 	<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>			
+			</div>
+			</div>
+			
 			<!-- Selects de Banco y Universidad -->
 			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Universidad</label> 
 			<select class="form-control"  name="university">

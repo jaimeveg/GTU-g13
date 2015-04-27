@@ -56,14 +56,15 @@ public class RegisterServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String surname = req.getParameter("surname");
 		String dni = req.getParameter("dni");
+		String address = req.getParameter("address");
 		String university = req.getParameter("university");
 		String bank = req.getParameter("bank");	
 		String entityName = req.getParameter("entityName");
 		String entityAb = req.getParameter("entityAb");
 		if(entity.equals("User")){
-			userDAO.add(entity, userId, name, surname, dni, university, bank);
+			userDAO.add(entity, userId, name, surname, dni, university, bank, address);
 		}else{
-			userDAO.add(entity, userId, entityName, entityAb, "", "", "");
+			userDAO.add(entity, userId, entityName, entityAb, "", "", "", "");
 		}
 		switch (entity) {
 		case "User": 

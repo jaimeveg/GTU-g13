@@ -23,10 +23,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	@Override
 	public void add(String entity, String userId, String name, String surname, String dni,
-			String university, String bank) {
+			String university, String bank, String address) {
 
 		EntityManager	em =	EMFService.get().createEntityManager();
-		Usuario usuario =	new Usuario(entity, userId, name, surname, dni, university, bank);
+		Usuario usuario =	new Usuario(entity, userId, name, surname, dni, university, bank, address);
 		em.persist(usuario);
 		em.close();
 
@@ -82,7 +82,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	}
 	
-	public void updateUser(long id, String name, String surname, String dni, String university, String bank) {
+	public void updateUser(long id, String name, String surname, String dni, String university, String bank, String address) {
 
 		synchronized (this)	{
 			EntityManager em = EMFService.get().createEntityManager();
@@ -91,6 +91,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 				usuario.setName(name);
 				usuario.setSurname(surname);
 				usuario.setDni(dni);
+				usuario.setAddress(address);
 				usuario.setUniversity(university);
 				usuario.setBank(bank);
 				em.merge(usuario);

@@ -88,6 +88,13 @@
 					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
 			</div>
+			<div class="form-group">
+				<label>Address</label>
+				<div class="input-group">
+					<input class="form-control" type="text" name="address" value="${usuario.address}" required> 
+					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				</div>
+			</div>	
 			
 			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Universidad</label> 
 			<select class="form-control" name="university">

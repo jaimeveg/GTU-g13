@@ -74,18 +74,19 @@ public class ModifyServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String surname = req.getParameter("surname");
 		String dni = req.getParameter("dni");
+		String address = req.getParameter("address");
 		String university = req.getParameter("university");
 		String bank = req.getParameter("bank");
 		
-		if(bank == null || university == null){
+		if(bank.equals("") || university.equals("")){
 			PrintWriter out = res.getWriter();  
 			res.setContentType("text/html");  
 			out.println("<script type=\"text/javascript\">");  
 			out.println("alert('Se deben rellenar los campos Universidad y Banco con uno de entre los disponibles.');");
 			out.println("window.location.href='/modify'");
 			out.println("</script>");
-		}else{		
-			usuarioDAO.updateUser(id, name, surname, dni, university, bank); 
+		}else{	
+			usuarioDAO.updateUser(id, name, surname, dni, university, bank, address);
 			res.sendRedirect("/user");
 		}
 	}

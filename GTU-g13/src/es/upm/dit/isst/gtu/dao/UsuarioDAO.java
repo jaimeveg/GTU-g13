@@ -6,10 +6,10 @@ import es.upm.dit.isst.gtu.model.Usuario;
 
 public interface UsuarioDAO {
 	
-	public void add(String entity, String userId, String name, String surname, String dni, String university, String bank);
+	public void add(String entity, String userId, String name, String surname, String dni, String university, String bank, String address);
 	public Usuario getUsuarioByUserId(String userId);
 	public List<Usuario> listUsersByEntity(String entity);
 	public void remove(Long id);
-	public void updateUser(long id, String name, String surname, String dni, String university, String bank);
+	public void updateUser(long id, String name, String surname, String dni, String university, String bank, String address);
 
 }

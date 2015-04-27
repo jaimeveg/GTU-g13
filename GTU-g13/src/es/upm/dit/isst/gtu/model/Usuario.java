@@ -22,8 +22,9 @@ private static final long serialVersionUID =	1L;
 	private String dni;
 	private String university;
 	private String bank;
+	private String address;
 	
-	public Usuario(String entity, String userId, String name, String surname, String dni, String university, String bank) {
+	public Usuario(String entity, String userId, String name, String surname, String dni, String university, String bank, String address) {
 		this.entity = entity;
 		this.userId = userId;
 		this.name = name;
@@ -31,6 +32,7 @@ private static final long serialVersionUID =	1L;
 		this.dni = dni;
 		this.university = university;
 		this.bank = bank;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -95,6 +97,14 @@ private static final long serialVersionUID =	1L;
 
 	public void setEntity(String entity) {
 		this.entity = entity;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }
