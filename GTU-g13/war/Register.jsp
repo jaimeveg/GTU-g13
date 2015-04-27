@@ -87,7 +87,7 @@
 
 	</div>
 
-	<form class="formulario" method="post">
+	<form method="post" class="formulario">
 		<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
 
 		<label style="color: #A4A4A4;">ENTIDAD</label> <select class="form-control" name="entity"
@@ -104,7 +104,7 @@
 			<div class="form-group">
 				<label>NOMBRE</label>
 				<div class="input-group">
-					<input class="form-control" placeholder="Introduce tu nombre" type="text" name="name" required> 
+					<input class="form-control" placeholder="Introduce tu nombre" type="text" name="name" > 
 					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 			<div class="form-group">
 				<label>APELLIDOS</label> 
 				<div class="input-group">
-					<input class="form-control" placeholder="Introduce tus apellidos" type="text" name="surname" required>
+					<input class="form-control" placeholder="Introduce tus apellidos" type="text" name="surname" >
 					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
 			</div>
@@ -123,21 +123,21 @@
 			<div class="form-group">
 			<label> DNI</label>
 			<div class="input-group">
-			 	<input class="form-control" placeholder="Introduce tu DNI" type="text" name="dni" required> <br>
+			 	<input class="form-control" placeholder="Introduce tu DNI" type="text" name="dni" > <br>
 			 	<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>			
 			</div>
 			</div>
 			
 			<!-- Selects de Banco y Universidad -->
 			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Universidad</label> 
-			<select class="form-control"  name="university" required>
+			<select class="form-control"  name="university">
 				<option value=""></option>
 				<c:forEach items="${univs}" var="univ">
 					<option vale="${univ.surname}">${univ.name}</option>
 				</c:forEach>
 			</select> 
 			<label style="margin-top:11px; color: #A4A4A4;">Elige tu Banco</label>
-			<select class="form-control" name="bank" required>
+			<select class="form-control" name="bank" >
 				<option value=""></option>
 				<c:forEach items="${banks}" var="bank">
 					<option vale="${bank.surname}">${bank.name}</option>
@@ -148,20 +148,59 @@
 			<div class="form-group">
 				<label> Nombre de la entidad</label>
 				<div class="input-group">
-					<input  class="form-control" placeholder="Introduce el nombre completo de tu entidad" type="text" name="entityName" required>
+					<input  class="form-control" placeholder="Introduce el nombre completo de tu entidad" type="text" name="entityName">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label> Abreviatura </label>  
 				<div class="input-group">
-					<input  class="form-control" placeholder="Introduce la abreviatura de tu entidad" type="text" name="entityAb" required>
+					<input  class="form-control" placeholder="Introduce la abreviatura de tu entidad" type="text" name="entityAb">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
 			</div>
 		</div>
-		<input  value="Regístrate" class="peticion btn btn-info pull-right" type="submit">
+		<input type="submit" value="Regístrate" class="peticion btn btn-info pull-right">
 	</form>
+	
+	
+	<%-- <form method="post">
+		<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
+		Entidad:<br> <select name="entity" id="entity"
+			onclick="javascript:entityCheck();">
+			<option value="User">Usuario</option>
+			<option value="University">Universidad</option>
+			<option value="Bank">Banco</option>
+			<option value="Stamp">Estampadora</option>
+		</select> <br>
+		<div id="fields">
+			Nombre:<br>
+			<input type="text" name="name"> <br> Apellido:<br>
+			<input type="text" name="surname"> <br> DNI:<br>
+			<input type="text" name="dni"> <br> Universidad:<br>
+			<select name="university">
+				<option value=""></option>
+				<c:forEach items="${univs}" var="univ">
+					<option vale="${univ.surname}">${univ.name}</option>
+				</c:forEach>
+			</select> <br> Banco:<br>
+			<select name="bank">
+				<option value=""></option>
+				<c:forEach items="${banks}" var="bank">
+					<option vale="${bank.surname}">${bank.name}</option>
+				</c:forEach>
+			</select>
+		</div>
+		<div id="fields2" style="display:none">
+			Nombre de la entidad:<br>
+			<input type="text" name="entityName"> <br> 
+			Abreviatura:<br>
+			<input type="text" name="entityAb"> <br>
+		</div>
+		<br> <input type="submit">
+	</form> --%>
+	
+	
 	</p>
 </body>
 </html>

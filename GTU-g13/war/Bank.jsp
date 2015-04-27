@@ -27,7 +27,7 @@
 				<h1 class="textTitulo primeraFila">Página de consulta de solicitudes:</h1>
 			</div>
 			<div class="row">
-				<h1 class="textTitulo segundaFila"> Entidad Bancaria</h1>
+				<h1 class="textTitulo segundaFila"> <c:url value="${bank.name}"/></h1>
 			</div>
 		</div>
 

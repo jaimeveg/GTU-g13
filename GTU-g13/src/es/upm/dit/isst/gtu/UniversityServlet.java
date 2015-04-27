@@ -68,6 +68,7 @@ public class UniversityServlet extends HttpServlet {
 		
 
 		req.getSession().setAttribute("url",	url);
+		req.setAttribute("uni", usuario);
 		req.setAttribute("cards", new ArrayList<CardRequest>(uc));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(ac));
 		req.setAttribute("rejected", new ArrayList<CardRequest>(rc));

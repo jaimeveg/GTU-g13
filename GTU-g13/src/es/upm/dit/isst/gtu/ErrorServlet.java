@@ -35,7 +35,7 @@ public class ErrorServlet extends HttpServlet {
 			url = "/";
 			break;
 		case "1":
-			msg = "Usuario no encontrado, por favor regÃ­strese y vuelva a intentarlo";
+			msg = "Usuario no encontrado, por favor regístrese y vuelva a intentarlo";
 			url = userService.createLogoutURL("/");
 			break;
 		default:

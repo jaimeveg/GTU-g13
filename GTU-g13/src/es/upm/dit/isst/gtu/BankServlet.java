@@ -87,6 +87,7 @@ public class BankServlet extends HttpServlet {
 
 		resp.setContentType("text/plain");
 		req.getSession().setAttribute("url",	url);
+		req.setAttribute("bank", usuario);
 		req.setAttribute("cards", new ArrayList<CardRequest>(ucn));
 		req.setAttribute("cardsm", new ArrayList<CardRequest>(ucm));
 		req.setAttribute("accepted", new ArrayList<CardRequest>(ac));
