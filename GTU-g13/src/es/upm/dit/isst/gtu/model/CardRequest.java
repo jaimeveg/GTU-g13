@@ -19,13 +19,15 @@ public class CardRequest implements Serializable{
 	private String user;
 	private boolean monedero;
 	private String state;
+	private String dni;
 	
 	
-	public CardRequest(String entity, String user, boolean monedero, String state){
+	public CardRequest(String entity, String user, boolean monedero, String state, String dni){
 		this.entity = entity;
 		this.user = user;
 		this.monedero = monedero;
 		this.state = state;
+		this.dni = dni;
 	
 	}
 	
@@ -67,4 +69,13 @@ public class CardRequest implements Serializable{
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
 }

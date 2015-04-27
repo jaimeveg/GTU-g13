@@ -44,17 +44,16 @@
 			<p class="aceptadasTexto">Estado de la petición</p>
 			<table class="table table-hover consulta">
 				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
+					<th>DNI</th>
+					<th>Usuario</th>
 					<th>Entidad</th>
 					<th>Estado</th>
 					<th>Eliminar solicitud</th>
 				</tr>
 
 				<tr class="info">
-					<td><c:out value="${card.id}" /></td>
-					<td><c:out value="${usuario.name}" /> <c:out
-							value="${usuario.surname}" /></td>
+					<td><c:out value="${card.dni}" /></td>
+					<td><c:out value="${card.user}" /></td>
 					<td><c:out value="${card.entity}" /></td>
 					<td><c:out value="${card.state}" /></td>
 					<td>

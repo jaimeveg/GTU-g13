@@ -161,45 +161,7 @@
 			</div>
 		</div>
 		<input type="submit" value="Regístrate" class="peticion btn btn-info pull-right">
-	</form>
-	
-	
-	<%-- <form method="post">
-		<!-- Selector de entidad para momento más avanzado, de momento solo usuarios -->
-		Entidad:<br> <select name="entity" id="entity"
-			onclick="javascript:entityCheck();">
-			<option value="User">Usuario</option>
-			<option value="University">Universidad</option>
-			<option value="Bank">Banco</option>
-			<option value="Stamp">Estampadora</option>
-		</select> <br>
-		<div id="fields">
-			Nombre:<br>
-			<input type="text" name="name"> <br> Apellido:<br>
-			<input type="text" name="surname"> <br> DNI:<br>
-			<input type="text" name="dni"> <br> Universidad:<br>
-			<select name="university">
-				<option value=""></option>
-				<c:forEach items="${univs}" var="univ">
-					<option vale="${univ.surname}">${univ.name}</option>
-				</c:forEach>
-			</select> <br> Banco:<br>
-			<select name="bank">
-				<option value=""></option>
-				<c:forEach items="${banks}" var="bank">
-					<option vale="${bank.surname}">${bank.name}</option>
-				</c:forEach>
-			</select>
-		</div>
-		<div id="fields2" style="display:none">
-			Nombre de la entidad:<br>
-			<input type="text" name="entityName"> <br> 
-			Abreviatura:<br>
-			<input type="text" name="entityAb"> <br>
-		</div>
-		<br> <input type="submit">
-	</form> --%>
-	
+	</form>	
 	
 	</p>
 </body>

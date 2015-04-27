@@ -60,6 +60,9 @@ public class UserServlet extends HttpServlet {
 		boolean mondero= req.getParameter("monedero")!=null;
 		CardRequestDAO dao = CardRequestDAOImpl.getInstance();
 		
+		UsuarioDAO usuarioDAO = UsuarioDAOImpl.getInstance();
+		Usuario usuario =  usuarioDAO.getUsuarioByUserId(userId);
+		
 		if(dao.getCardRequestByUserId(user.getNickname())!=null){
 			System.out.println("Ya existe una peticion de este usuario");
 			PrintWriter out = res.getWriter();  
@@ -69,11 +72,11 @@ public class UserServlet extends HttpServlet {
 			out.println("window.location.href='/user'");
 			out.println("</script>");
 		}else{		
-			dao.add(entity, userId, mondero, state); 
+			dao.add(entity, userId, mondero, state, usuario.getDni()); 
 			PrintWriter out = res.getWriter();  
 			res.setContentType("text/html");  
 			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Peición realizada con éxito.');");
+			out.println("alert('Petición realizada con éxito.');");
 			out.println("window.location.href='/user'");
 			out.println("</script>");
 		}

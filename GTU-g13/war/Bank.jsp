@@ -40,8 +40,8 @@
 		<p class="aceptadasTexto"> PETICIONES PENDIENTES NO MONEDERO </p>
 		<table class="table table-hover">
 		<tr>
-			<th> ID </th>
-			<th> Nombre </th>
+			<th> DNI </th>
+			<th> Usuario </th>
 			<th> Entidad </th>
 			<th> Estado </th>
 			<th> Aceptar </th>
@@ -50,7 +50,7 @@
 		
 		<c:forEach items="${cards}" var="card">
 			<tr class="warning">
-				<td><c:out value="${card.id}" /></td>
+				<td><c:out value="${card.dni}" /></td>
 				<td><c:out value="${card.user}" /></td>
 				<td><c:out value="${card.entity}" /></td>
 				<td><c:out value="${card.state}" /></td>
@@ -76,8 +76,8 @@
 		<p class="aceptadasTexto"> PETICIONES PENDIENTES MONEDERO </p>
 		<table class="table table-hover">
 		<tr>
-			<th> ID </th>
-			<th> Nombre </th>
+			<th> DNI </th>
+			<th> Usuario </th>
 			<th> Entidad </th>
 			<th> Aceptar </th>
 			<th> Rechazar </th>
@@ -85,7 +85,7 @@
 		
 		<c:forEach items="${cardsm}" var="card">
 			<tr class="info">
-				<td><c:out value="${card.id}" /></td>
+				<td><c:out value="${card.dni}" /></td>
 				<td><c:out value="${card.user}" /></td>
 				<td><c:out value="${card.entity}" /></td>
 				<td>
@@ -110,10 +110,8 @@
 		<p class="aceptadasTexto"> PETICIONES RECHAZADAS </p>
 		<table class="table table-hover">
 		<tr>
-			<th> ID </th>
-			<th> Nombre </th>
-			<th> Apellido </th>
-			<th> Entidad </th>
+			<th> DNI </th>
+			<th> Usuario </th>
 			<th> Estado </th>
 			<th> Aceptar </th>
 			<th> Rechazar</th>
@@ -122,9 +120,8 @@
 		<c:forEach items="${rejected}" var="reject">
 		
 			<tr class="danger">
-				<td><c:out value="${reject.id}" /></td>
+				<td><c:out value="${reject.dni}" /></td>
 				<td><c:out value="${reject.user}" /></td>
-				<td> - </td>
 				<td> <c:out value="${reject.entity}" /> </td>
 			<td> <c:out value="${reject.state}" /> </td>
 			<td>
@@ -150,18 +147,16 @@
 		<p class="aceptadasTexto">PETICIONES ACEPTADAS</p>
 		<table class="table table-hover">
 			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
+				<th>DNI</th>
+				<th>Usuario</th>
 
 			</tr>
 
 			<c:forEach items="${accepted}" var="accept">
 
 				<tr class="success">
-					<td><c:out value="${accept.id}" /></td>
+					<td><c:out value="${accept.dni}" /></td>
 					<td><c:out value="${accept.user}" /></td>
-					<td>-</td>
 				</tr>
 			</c:forEach>
 

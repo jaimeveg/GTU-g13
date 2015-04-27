@@ -8,7 +8,7 @@ public interface CardRequestDAO {
 
 	public List<CardRequest> listCardRequests();
 	public List<CardRequest> listRequests(String entity, String state);
-	public void add	(String	entity, String user, boolean monedero, String state);
+	public void add	(String	entity, String user, boolean monedero, String state, String dni);
 	//public void update (long id, String entity);
 	public CardRequest getCardRequestByUserId(String userId);
 	public void remove	(long id);
